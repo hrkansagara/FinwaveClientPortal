@@ -1,0 +1,162 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-content">
+    <div class="separator-breadcrumb border-top"></div>
+    <!-- end of row-->
+    <div class="row mb-4">
+        <div class="col-md-12 mb-4">
+            <div class="card text-left">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Intraday transection Detail</h4>
+
+                    <h2 style="color: blue">Filter Records</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="color: blue">FromDate</td>
+                                <td>
+                                    @Html.TextBox("FromDate", "", new { @class = "form-control datepicker", placeholder = "MM/dd/yyyy" })
+                                </td>
+                                <td style="color: blue">ToDate</td>
+                                <td>
+                                    @Html.TextBox("ToDate", "", new { @class = "form-control datepicker", placeholder = "MM/dd/yyyy" })
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-success btn-md" value="Filter" id="btnFilter" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-responsive">
+                        <table class="display table table-striped table-bordered" id="grdIntradayTransection" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>TransactionDate</th>
+                                    <th>BenefDetails2</th>
+                                    <th>Amount</th>
+                                    <th>TradingCode</th>
+                                    <th>Status</th>
+                                    <th>ClientName</th>
+                                    <th>RemitterBank</th>
+                                    <th>RemitterName</th>
+                                    <th>RemitterAccount</th>
+                                    <th>UserReferenceNumber</th>
+                                    <th>AlertSequenceNo</th>
+                                    <th>DebitorCredit</th>
+                                    <th>RemitterIFSC</th>
+                                    <th>ChequeNo</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+        $('.dataTables_filter').hide();
+        var table = $('#grdIntradayTransection').dataTable({
+            serverSide: true,
+            processing: true, // for show progress bar
+            serverSide: true, // for process server side
+            filter: true, // this is for disable filter (search box)
+            orderMulti: false, // for disable multiple column at once
+                ajax: {
+                    url: '@Url.Action("GetIntradayTransectionList", "Dashboard")',
+                    type: 'POST',
+                    datatype: 'json',
+                    data: function (data) {
+                        var FromDate = $('#FromDate').val();
+                        var ToDate = $('#ToDate').val();
+                        data.FromDate = FromDate;
+                        data.ToDate = ToDate;
+                    }
+                },
+                processing: true,
+                columns: [
+                    {
+                        data: 'TransactionDate', render: function (data, type, row) {
+                            return row.DateTransactionStr;
+                        }, name: "TransactionDate"
+                    },
+                    {
+                        data: 'BenefDetails2', name: "BenefDetails2"
+                    },
+                    {
+                        data: 'Amount', name: "Amount"
+                    },
+                    {
+                        data: 'TradingCode', name: "TradingCode"
+                    },
+                    {
+                        data: 'Status', name: "Status"
+                    },
+                    {
+                        data: 'ClientName', name: "ClientName"
+                    },
+                    {
+                        data: 'RemitterBank', name: "RemitterBank"
+                    },
+                    {
+                        data: 'RemitterName', name: "RemitterName"
+                    },
+                    {
+                        data: 'RemitterAccount', name: "RemitterAccount"
+                    },
+                    {
+                        data: 'UserReferenceNumber', name: "UserReferenceNumber"
+                    },
+                    {
+                        data: 'AlertSequenceNo', name: "AlertSequenceNo"
+                    },
+                    {
+                        data: 'DebitorCredit', name: "DebitorCredit"
+                    },
+                    {
+                        data: 'RemitterIFSC', name: "RemitterIFSC"
+                    },
+                    {
+                        data: 'ChequeNo', name: "ChequeNo"
+                    },
+                    {
+                        data: 'Description', name: "Description"
+                    }
+                ]
+        })
+
+        $("#btnFilter").click(function () {
+            var To = "";
+            var From = "";
+            if ($('#ToDate').val() != null) {
+                To = $('#ToDate').val();
+            }
+            if ($('#FromDate').val() != null) {
+                From = $("#FromDate").val();
+            }
+            if (From != "" && To != "") {
+                if (From > To) {
+                    Notify(false, 'from date must be less than to date.');
+                    return false;
+                }
+                else {
+                    table.fnDraw();
+                }
+            }
+            else {
+                table.fnDraw();
+            }
+        });
+        $('.dataTables_filter').hide();
+    });
+
+
+</script>
+

@@ -1,0 +1,333 @@
+//Get API Example
+
+private HttpResponseMessage GetClientBankDetailByAccountNumber(string accountNumber)
+        {
+            var response = new HttpResponseMessage();
+            var builerUrl = Convert.ToString(ConfigurationManager.AppSettings["UrlGetClientBankDetailByAccountNumber"]);
+            var builder = new UriBuilder(builerUrl);
+            var query = HttpUtility.ParseQueryString(builder.Query);
+            query["UrlUserName"] = Convert.ToString(ConfigurationManager.AppSettings["UrlUserName"]);
+            query["UrlPassword"] = Convert.ToString(ConfigurationManager.AppSettings["UrlPassword"]);
+            query["UrlDatabase"] = Convert.ToString(ConfigurationManager.AppSettings["UrlDatabase"]);
+            query["UrlDataYear"] = Convert.ToString(ConfigurationManager.AppSettings["UrlDataYear"]);
+            query["BankAccountNumber"] = accountNumber;
+            builder.Query = query.ToString();
+
+            string url = builder.ToString();
+
+            using (var client = new HttpClient())
+            {
+                response = client.GetAsync(url).Result;
+            }
+
+            return response;
+        }
+
+//Post API Example
+
+private HttpResponseMessage InsertTechExcelReceiptDirectPost(IntradayTransactionDetailModel model)
+        {
+            var response = new HttpResponseMessage();
+
+            try
+            {
+                var data = new Dictionary<string, string>
+                            {
+                               { "VoucherDate", model.VoucherDate.ToString("dd/MM/yyyy") },
+                               { "AccountCode", model.AccountCode },
+                               { "COMPANYCODE", model.CompanyCode },
+                               { "PAYMENTREFERENCENUMBER", model.PaymentReferenceNumber },
+                               { "Amount", Convert.ToString(model.Amount) },
+                               { "PostingBankAccount", model.PostingBankAccount },
+                               { "BankAccountNumber", model.BankAccountNumber },
+                               { "NARRATION", model.Narration },
+                               { "ENTRYTYPE", model.EntryType },
+                               { "LiveExport", model.LiveExport ? "1" : "0" },
+                               { "RecoDate", model.RecoDate },
+                               { "CHEQUE_CAN", "" },
+                               { "Cheque_Image", "" },
+                               { "Unautho_Flag", model.Unautho_Flag ? "1" : "0" },
+                               { "Mode", model.Mode },
+                               { "UrlUserName", Convert.ToString(ConfigurationManager.AppSettings["UrlUserName"]) },
+                               { "UrlPassword", Convert.ToString(ConfigurationManager.AppSettings["UrlPassword"]) },
+                               { "UrlDatabase", Convert.ToString(ConfigurationManager.AppSettings["UrlDatabase"]) },
+                               { "UrlDataYear", Convert.ToString(ConfigurationManager.AppSettings["UrlDataYear"]) }
+                            };
+                var content = new FormUrlEncodedContent(data);
+
+                var url = Convert.ToString(ConfigurationManager.AppSettings["UrlTechExcelReceiptDirectPost"]);
+
+                using (var client = new HttpClient())
+                {
+                    response = client.PostAsync(url, content).Result;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.StatusCode = HttpStatusCode.NotImplemented;
+                CommonHelper.LogSystemError(ex, (new System.IO.FileInfo(Request.Url.AbsolutePath)).Name, new System.Diagnostics.StackTrace().GetFrame(0).GetMethod().Name, model.AccountCode + "_" + model.BankAccountNumber);
+            }
+
+            return response;
+        }
+		
+		
+public IntraDayTransactionUpdateModel ValidateIntraDayTransaction(GenericCorporateAlertRequest intradayTransDetail)
+        {
+            var response = new IntraDayTransactionUpdateModel();
+
+            try
+            {
+                if (!string.IsNullOrEmpty(intradayTransDetail.BenefDetails2))
+                {
+                    string clientCode = string.Empty;
+                    if (intradayTransDetail.BenefDetails2.Contains("ARNNSE"))
+                    {
+                        clientCode = intradayTransDetail.BenefDetails2.Replace("ARNNSE", "");
+                    }
+                    else if (intradayTransDetail.BenefDetails2.Contains("ARNNFO"))
+                    {
+                        clientCode = intradayTransDetail.BenefDetails2.Replace("ARNNFO", "");
+                    }
+
+                    HttpResponseMessage result = GetClientBankDetailByClientCode(clientCode);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var data = result.Content.ReadAsStringAsync().Result;
+                        JArray jarr = JArray.Parse(data);
+
+                        if (jarr.Count > 0)
+                        {
+                            JToken[] dataArray = jarr[0]["DATA"].ToArray();
+                            var dataValue = dataArray.Where(x => Convert.ToString(x[12]) == intradayTransDetail.RemitterAccount).ToArray();
+                            if (dataValue.Count() == 1 && dataArray.Count() > 0)
+                            {
+                                response.TradingCode = Convert.ToString(dataValue[0][0]);
+                                response.ClientName = Convert.ToString(dataValue[0][11]);
+                                response.RecordId = intradayTransDetail.ReturnCode;
+                                response.StatusId = (int)AccountStatus.BankVarifiedAndEntryPosted;
+                            }
+                            else if (dataValue.Count() == 0 && dataArray.Count() > 0)
+                            {
+                                response.TradingCode = Convert.ToString(dataValue[0][0]);
+                                response.ClientName = Convert.ToString(dataValue[0][11]);
+                                response.RecordId = intradayTransDetail.ReturnCode;
+                                response.StatusId = (int)AccountStatus.ThirdPartyTransaction;
+                            }
+                        }
+                    }
+                }
+                else if (!string.IsNullOrEmpty(intradayTransDetail.RemitterAccount))
+                {
+                    HttpResponseMessage result = GetClientBankDetailByAccountNumber(intradayTransDetail.RemitterAccount);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var data = result.Content.ReadAsStringAsync().Result;
+                        JArray jarr = JArray.Parse(data);
+
+                        if (jarr.Count > 0)
+                        {
+                            JToken[] dataArray = jarr[0]["DATA"].ToArray();
+                            var dataValue = dataArray.Where(x => Convert.ToString(x[5]) == intradayTransDetail.RemitterAccount).ToArray();
+                            if (dataValue.Count() == 1 && dataArray.Count() > 1)
+                            {
+                                response.TradingCode = Convert.ToString(dataValue[0][0]);
+                                response.ClientName = Convert.ToString(dataValue[0][2]);
+                                response.RecordId = intradayTransDetail.ReturnCode;
+                                response.StatusId = (int)AccountStatus.MappingRequired;
+                            }
+                            else if (dataValue.Count() == 1 && dataArray.Count() == 1)
+                            {
+                                response.TradingCode = Convert.ToString(dataValue[0][0]);
+                                response.ClientName = Convert.ToString(dataValue[0][2]);
+                                response.RecordId = intradayTransDetail.ReturnCode;
+                                response.StatusId = (int)AccountStatus.BankVarifiedAndEntryPosted;
+                            }
+                            else if (dataValue.Count() == 0 && dataArray.Count() > 0)
+                            {
+                                response.TradingCode = Convert.ToString(dataValue[0][0]);
+                                response.ClientName = Convert.ToString(dataValue[0][2]);
+                                response.RecordId = intradayTransDetail.ReturnCode;
+                                response.StatusId = (int)AccountStatus.ThirdPartyTransaction;
+                            }
+                        }
+                        else
+                        {
+                            response.RecordId = intradayTransDetail.ReturnCode;
+                            response.StatusId = (int)AccountStatus.ThirdPartyTransaction;
+                        }
+                    }
+                }
+                else
+                {
+                    response.RecordId = intradayTransDetail.ReturnCode;
+                    response.StatusId = (int)AccountStatus.SourceDataError;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.ReturnMessage = ex.Message;
+                response.StatusId = (int)AccountStatus.ErrorOccurred;
+                CommonHelper.LogSystemError(ex, (new System.IO.FileInfo(Request.Url.AbsolutePath)).Name, new System.Diagnostics.StackTrace().GetFrame(0).GetMethod().Name, intradayTransDetail.BenefDetails2 + "_" + intradayTransDetail.RemitterAccount);
+            }
+
+            return response;
+
+        }
+		
+		
+		[AllowAnonymous]
+        [HttpPost]
+        public string IntradayTrans(GenericCorporateAlertList rootList)
+        {
+
+            GenericCorporateAlertResponse response = new GenericCorporateAlertResponse();
+            GenericCorporateAlertRequest _intradayTransDetail = rootList.GenericCorporateAlertRequest[0];
+            if (ModelState.IsValid)
+            {
+                _intradayTransDetail = curCoreDataRepositry.InsertIntradayTransDetail(_intradayTransDetail);
+                if (_intradayTransDetail.ReturnCode > 0)
+                {
+                    response.errorCode = "0";
+                    response.errorMessage = "Success";
+                    response.domainReferenceNo = _intradayTransDetail.AlertSequenceNo.ToString();
+
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(_intradayTransDetail.DebitCredit) && _intradayTransDetail.DebitCredit.Trim().ToLower() == "credit")
+                        {
+                            var updateModel = ValidateIntraDayTransaction(_intradayTransDetail);
+                            if (updateModel.StatusId > -1)
+                            {
+                                //var responseModel = curCoreDataRepositry.UpdateIntradayTransaction(updateModel);
+                                //if (responseModel.ReturnCode != -999 && responseModel.ReturnCode > 0)
+                                //{
+                                var postModel = CreateTechExcelReceiptDirectPostModel(_intradayTransDetail);
+                                postModel.AccountCode = updateModel.TradingCode;
+                                postModel.PostingBankAccount = Convert.ToString(ConfigurationManager.AppSettings["PostingBankAccount"]);
+
+                                if (!string.IsNullOrEmpty(_intradayTransDetail.UserReferenceNumber) && _intradayTransDetail.UserReferenceNumber.Length > 6)
+                                {
+                                    postModel.PaymentReferenceNumber = _intradayTransDetail.UserReferenceNumber; //.Substring(_intradayTransDetail.UserReferenceNumber.Length - 6);
+                                }
+
+                                //C -(Cheque Received), T -(Transfered), R -(RTGS), N - (NEFT), L -(Lien)
+                                if (_intradayTransDetail.MnemonicCode.Contains("NEFT"))
+                                {
+                                    postModel.Mode = "N";
+                                }
+                                else if (_intradayTransDetail.MnemonicCode.Contains("Cheque Received"))
+                                {
+                                    postModel.Mode = "C";
+                                }
+                                else if (_intradayTransDetail.MnemonicCode.Contains("RTGS"))
+                                {
+                                    postModel.Mode = "R";
+                                }
+                                else if (_intradayTransDetail.MnemonicCode.Contains("Lien"))
+                                {
+                                    postModel.Mode = "L";
+                                }
+                                else
+                                {
+                                    postModel.Mode = "T";
+                                }
+
+                                HttpResponseMessage result = InsertTechExcelReceiptDirectPost(postModel);
+                                if (result.IsSuccessStatusCode)
+                                {
+                                    var data = result.Content.ReadAsStringAsync().Result;
+
+                                    try
+                                    {
+                                        JArray jarr = JArray.Parse(data);
+
+                                        if (jarr.Count > 0)
+                                        {
+                                            JToken[] dataArray = jarr[0]["DATA"].ToArray();
+                                            if (dataArray[0] != null && dataArray[0][0].ToString().Contains("VoucherNo"))
+                                            {
+                                                postModel.TechExcelStatus = dataArray[0][0].ToString();
+                                                postModel = curCoreDataRepositry.InsertTechExcelReceiptDirectPost(postModel);
+                                            }
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+                                        JObject jobj = JObject.Parse(data);
+                                        postModel.TechExcelStatus = Convert.ToString(jobj["MES"]);
+                                        postModel = curCoreDataRepositry.InsertTechExcelReceiptDirectPost(postModel);
+                                        updateModel.StatusId = (int)AccountStatus.TechExcelError;
+                                        //var resmodel = curCoreDataRepositry.UpdateIntradayTransaction(updateModel);
+                                    }
+
+                                    var responseModel = curCoreDataRepositry.UpdateIntradayTransaction(updateModel);
+                                }
+                                else
+                                {
+                                    updateModel.StatusId = (int)AccountStatus.TechExcelError;
+                                    var responseModel = curCoreDataRepositry.UpdateIntradayTransaction(updateModel);
+                                }
+                                //}
+                            }
+                            else
+                            {
+                                updateModel.StatusId = (int)AccountStatus.MappingRequired;
+                                var responseModel = curCoreDataRepositry.UpdateIntradayTransaction(updateModel);
+                            }
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        CommonHelper.LogSystemError(ex, (new System.IO.FileInfo(Request.Url.AbsolutePath)).Name, new System.Diagnostics.StackTrace().GetFrame(0).GetMethod().Name, _intradayTransDetail.BenefDetails2 + "_" + _intradayTransDetail.RemitterAccount);
+                    }
+
+                }
+                else if (_intradayTransDetail.ReturnCode == -998)
+                {
+                    response.errorCode = "0";
+                    response.errorMessage = "Duplicate";
+                    response.domainReferenceNo = _intradayTransDetail.AlertSequenceNo.ToString();
+                }
+                else
+                {
+                    response.errorCode = "1";
+                    response.errorMessage = "Technical Reject";
+                    response.domainReferenceNo = _intradayTransDetail.AlertSequenceNo.ToString();
+                }
+            }
+            else
+            {
+                response.errorCode = "1";
+                response.errorMessage = "Technical Reject";
+                response.domainReferenceNo = _intradayTransDetail.AlertSequenceNo.ToString();
+            }
+
+            var json = JsonConvert.SerializeObject(new
+            {
+                GenericCorporateAlertResponse = response
+            });
+
+            return json;
+        }
+		
+		private IntradayTransactionDetailModel CreateTechExcelReceiptDirectPostModel(GenericCorporateAlertRequest model)
+        {
+            var intradayTransModel = new IntradayTransactionDetailModel()
+            {
+                AlertSequenceNo = model.AlertSequenceNo,
+                Amount = model.Amount,
+                BankAccountNumber = model.RemitterAccount,
+                CompanyCode = "NSE_CASH",
+                EntryType = "PG",
+                LiveExport = true,
+                Narration = model.TransactionDescription,
+                Unautho_Flag = false,
+                VoucherDate = model.TransactionDate
+            };
+
+            return intradayTransModel;
+        }

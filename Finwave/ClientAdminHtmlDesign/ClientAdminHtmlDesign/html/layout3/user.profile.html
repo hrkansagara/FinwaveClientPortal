@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" dir="">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>Finwave | Dashboard Home</title>
+      <link href="../../dist-assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+      <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
+      <link href="../../dist-assets/css/themes/lite-purple.css" rel="stylesheet" />
+      <link href="../../dist-assets/css/plugins/perfect-scrollbar.css" rel="stylesheet" />
+   </head>
+   <body class="text-left">
+      <div class="app-admin-wrap layout-horizontal-bar">
+         <div class="main-header">
+            <div class="logo"><img src="../../dist-assets/images/logo.png" alt="" /></div>
+            <div class="menu-toggle">
+               <div></div>
+               <div></div>
+               <div></div>
+            </div>
+            <div class="horizontal-bar-wrap">
+               <div class="header-topnav">
+                  <div class="topnav rtl-ps-none" id="" data-perfect-scrollbar="" data-suppress-scroll-x="true">
+                     <ul class="menu float-right">
+                        <li>
+                           <div>
+                              <div>
+                                 <label class="toggle" for="drop-2">Dashboard</label><a href="dashboard1.html">Dashboard</a>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div>
+                              <div>
+                                 <label class="toggle" for="drop-2">Portfolio</label><a href="#">Portfolio</a>
+                                 <input id="drop-2" type="checkbox" />
+                                 <ul>
+                                    <li><a href="position.html"><i class="nav-icon mr-2"></i><span class="item-name">Positions</span></a></li>
+                                    <li><a href="allocation.html"><i class="nav-icon mr-2"></i><span class="item-name">Holdings (7)</span></a></li>
+                                    <li><a href="#"><i class="nav-icon mr-2"></i><span class="item-name">IPOs</span></a></li>
+                                    <li><a href="ledger.html"><i class="nav-icon mr-2"></i><span class="item-name">Ledger</span></a></li>
+                                    <li><a href="#"><i class="nav-icon mr-2"></i><span class="item-name">Corporate Actions</span></a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div>
+                              <div>
+                                 <label class="toggle" for="drop-2">Reports</label><a href="#">Reports</a>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div>
+                              <div>
+                                 <label class="toggle" for="drop-2">Funds</label><a href="#">Funds</a>
+                                 <input id="drop-2" type="checkbox" />
+                                 <ul>
+                                    <li><a href="#"><i class="nav-icon mr-2"></i><span class="item-name">Overview</span></a></li>
+                                    <li><a href="dpstatement.html"><i class="nav-icon mr-2"></i><span class="item-name">DP Statement</span></a></li>
+                                    <li><a href="#"><i class="nav-icon mr-2"></i><span class="item-name">Interest Statement</span></a></li>
+                                    <li><a href="#"><i class="nav-icon mr-2"></i><span class="item-name">Bank Mandates</span></a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="active">
+                           <div>
+                              <div>
+                                 <label class="toggle" for="drop-2">Account</label><a href="user.profile.html">Account</a>
+                              </div>
+                           </div>
+                        </li>
+                        <!-- end ui kits-->
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="header-part-right">
+               <!-- Full screen toggle -->
+               <!-- User avatar dropdown -->
+               <div class="dropdown">
+                  <div class="user col align-self-end">
+                     <img src="../../dist-assets/images/faces/1.jpg" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: -20px;">
+                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <div class="dropdown-header">
+                           <i class="i-Lock-User mr-1"></i> Timothy Carlson
+                        </div>
+                        <a class="dropdown-item">Account settings</a>
+                        <a class="dropdown-item">Billing history</a>
+                        <a class="dropdown-item" href="#">Sign out</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- header top menu end-->
+         <!-- =============== Horizontal bar End ================-->
+         <div class="main-content-wrap d-flex flex-column">
+            <!-- ============ Body content start ============= -->
+            <div class="main-content container-fluid">
+               <div class="money-info-section">
+                  <div class="row">
+                     <!-- ICON BG-->
+                     <div class="col-md-15 col">
+                        <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                           <div class="card-body text-center">
+                              <i class="i-Money-Bag"></i>
+                              <div class="content">
+                                 <p class="text-muted mt-2 mb-0">Current Value</p>
+                                 <p class="text-primary text-14 line-height-1 mb-2">₹49,62,454.00</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-15 col">
+                        <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                           <div class="card-body text-center">
+                              <i class="i-Financial"></i>
+                              <div class="content">
+                                 <p class="text-muted mt-2 mb-0">Investment Value</p>
+                                 <p class="text-primary text-14 line-height-1 mb-2">₹48,72,228.00</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-15 col">
+                        <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                           <div class="card-body text-center">
+                              <i class="i-Line-Chart-2"></i>
+                              <div class="content">
+                                 <p class="text-muted mt-2 mb-0">Today's P/L</p>
+                                 <p class="text-danger text-14 line-height-1 t-font-boldest mb-2">₹-1,38,736.35<span class="text-small">(-2.85%)</span></p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-15 col">
+                        <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                           <div class="card-body text-center">
+                              <i class="i-Money-2"></i>
+                              <div class="content">
+                                 <p class="text-muted mt-2 mb-0">Unrealised P/L</p>
+                                 <p class="text-primary text-14 line-height-1 mb-2">₹-90,225.97<span class="text-small">(-1.85%)</span></p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-15 col">
+                        <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                           <div class="card-body text-center">
+                              <i class="i-Money-2"></i>
+                              <div class="content">
+                                 <p class="text-muted mt-2 mb-0">Equity Balance</p>
+                                 <p class="text-primary text-14 line-height-1 mb-2">₹-3,10,623.51<span class="text-small">(-1.85%)</span></p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="breadcrumb">
+                  <h1 class="mr-2">My Account</h1>
+                  <ul>
+                     <li>User Profile</li>
+                  </ul>
+               </div>
+               <div class="separator-breadcrumb border-top"></div>
+               <div class="card user-profile o-hidden mb-4">
+                  <div class="user-info row">
+                     <div class="col-md-6">
+                        <div class="row">
+                           <div class="col-md-2">
+                              <img class="profile-picture avatar-lg mb-2" src="../../dist-assets/images/faces/1.jpg" alt="" style="width: 80px; margin-left: auto; margin-right: auto; text-align: center;
+                                 display: table-cell; vertical-align: middle;" />
+                           </div>
+                           <div class="col-md-10 align-self-center">
+                              <p class="m-0 text-24">Priyank Prakashbhai Shah</p>
+                              <p class="text-muted m-0">Client ID: <span><b>YJ7683</b></span></p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <ul class="nav nav-tabs profile-nav mb-4" id="profileTab" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" id="timeline-tab" data-toggle="tab" href="#personal" role="tab" aria-controls="personal" aria-selected="false">Personal Information</a></li>
+                        <li class="nav-item"><a class="nav-link" id="about-tab" data-toggle="tab" href="#bank-details" role="tab" aria-controls="bank-details" aria-selected="true">Bank Details</a></li>
+                        <li class="nav-item"><a class="nav-link" id="friends-tab" data-toggle="tab" href="#demat" role="tab" aria-controls="demat" aria-selected="false">Demat Details</a></li>
+                        <li class="nav-item"><a class="nav-link" id="photos-tab" data-toggle="tab" href="#segment" role="tab" aria-controls="segment" aria-selected="false">Segment Activation</a></li>
+                     </ul>
+                     <div class="tab-content" id="profileTabContent">
+                        <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                           <h4>Personal Information</h4>
+                           <div class="alert alert-primary" role="alert">
+                              Updating e-mail and phone number will take up to 24 hours to reflect (owing to updation on exchanges and depositories)
+                           </div>
+                           <hr />
+                           <div class="row">
+                              <div class="col-md-3 col-6">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1">Name</p>
+                                    <span><b>Priyank Prakashbhai Shah</b></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1">Client Code</p>
+                                    <span><b>YJ7683</b></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1">Birth Date</p>
+                                    <span><b>19/03/1980</b></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1"> Gender</p>
+                                    <span><b>Male</b></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1"> E-mail ID
+                                       <a href="#"><i class="i-Pen-2 text-16 mr-1" type="button" data-toggle="modal" data-target=".bd-example-modal-md"></i></a>
+                                    </p>
+                                    <span><b>Priyank@gmail.com</b></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1"> Mobile No.
+                                       <a href="#"><i class="i-Pen-2 text-16 mr-1" type="button" data-toggle="modal" data-target=".bd-example-modal-md"></i></a>
+                                    </p>
+                                    <span><b>9********0</b></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1">PAN</p>
+                                    <span><b>CHZP********</b></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1"> Nominee Name</p>
+                                    <span><b>Nominee Name</b></span>
+                                 </div>
+                              </div>
+                              <div class="col-md-12 col-12">
+                                 <div class="mb-4">
+                                    <p class="text-primary mb-1"> Address</p>
+                                    <span><b>Corporate & Communication Office Address: 407, The Grand Mall, OPP. SBI Zonal Office, Ambawadi, Ahmedabad - 380015, GUJARAT.</b></span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="tab-pane fade" id="bank-details" role="tabpanel" aria-labelledby="bank-details-tab">
+                           <h6 class="tab-sub-heading">BANK DETAILS</h6>
+                           <div class="alert alert-primary" role="alert">
+                              <p>Please map your own bank account to your Trading/Demat account. You cannot link a third party bank account to your trading/Demat account.</p>
+                              <p>You can Link multiple Bank accounts with Your Trading Account. Post successful verification, your existing primary bank will be mapped as a secondary bank account. You will receive your funds Payout in your Primary Bank Account.</p>
+                              <p class="mb-0">Charge of Rs.50 + GST will be applicable for Bank Account Modification.</p>
+                           </div>
+                           <hr />
+                           <div class="row">
+                              <div class="col-md-12 back-office-bank">
+                                 <div class="p-3 pt-4">
+                                    <h4 class="pb-4">Trading Back Office Bank Details</h4>
+                                    <div class="row">
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> Bank Name</p>
+                                             <span><b>DENA BANK</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1">Bank Branch</p>
+                                             <span><b>SARANGPUR</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> Bank Account Number</p>
+                                             <span><b>12345678901234</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> IFSC Code</p>
+                                             <span><b>DB000000222</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> MICR Code</p>
+                                             <span><b>1234567890</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> Account Type <span class="badge badge-primary">Personal Account</span></p>
+                                             <span><b>Personal Account</b></span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="table-responsive table-shadow">
+                                          <table class="display table table-borderless ul-contact-list-table" id="contact_list_table" style="width:100%; padding: 10px;">
+                                             <thead>
+                                                <tr class="border-bottom">
+                                                   <th>Category</th>
+                                                   <th class="text-center">Status</th>
+                                                   <th class="text-center">Last Updated</th>
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                                <tr>
+                                                   <td>Bank account modification (Primary)</td>
+                                                   <td align="center">Completed</td>
+                                                   <td align="center">2020-05-12 11:11:16</td>
+                                                </tr>
+                                                <tr>
+                                                   <td>Bank account modification (Primary)</td>
+                                                   <td align="center">Completed</td>
+                                                   <td align="center">2020-05-12 11:11:16</td>
+                                                </tr>
+                                                <tr>
+                                                   <td>Bank account modification (Primary)</td>
+                                                   <td align="center">Completed</td>
+                                                   <td align="center">2020-05-12 11:11:16</td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                       <hr class="bank-details-seperator">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-12 back-office-bank">
+                                 <div class="p-3 pt-4">
+                                    <h4 class="pb-4">DP Back Office Bank Details</h4>
+                                    <div class="row">
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> Bank Name</p>
+                                             <span><b>DENA BANK</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1">Bank Branch</p>
+                                             <span><b>SARANGPUR</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> Bank Account Number</p>
+                                             <span><b>12345678901234</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> IFSC Code</p>
+                                             <span><b>DB000000222</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> MICR Code</p>
+                                             <span><b>1234567890</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> Account Type <span class="badge badge-primary">Personal Account</span></p>
+                                             <span><b>Personal Account</b></span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="table-responsive table-shadow">
+                                          <table class="display table table-borderless ul-contact-list-table" id="contact_list_table" style="width:100%">
+                                             <thead>
+                                                <tr class="border-bottom">
+                                                   <th>Category</th>
+                                                   <th class="text-center">Status</th>
+                                                   <th class="text-center">Last Updated</th>
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                                <tr>
+                                                   <td>Bank account modification (Primary)</td>
+                                                   <td align="center">Completed</td>
+                                                   <td align="center">2020-05-12 11:11:16</td>
+                                                </tr>
+                                                <tr>
+                                                   <td>Bank account modification (Primary)</td>
+                                                   <td align="center">Completed</td>
+                                                   <td align="center">2020-05-12 11:11:16</td>
+                                                </tr>
+                                                <tr>
+                                                   <td>Bank account modification (Primary)</td>
+                                                   <td align="center">Completed</td>
+                                                   <td align="center">2020-05-12 11:11:16</td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="tab-pane fade" id="demat" role="tabpanel" aria-labelledby="demat-tab">
+                           <div class="row">
+                              <div class="col-md-12 back-office-bank">
+                                 <div class="p-3 pt-4">
+                                    <h4 class="pb-4">Demat Details</h4>
+                                    <div class="row">
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> Depository Name</p>
+                                             <span><b>CDSL</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1">Depository Participant (DP)</p>
+                                             <span><b>AIRAN FINSTOCKS PRIVATE LIMITED</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> Demat ID</p>
+                                             <span><b>12308160005119856</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> DP ID</p>
+                                             <span><b>12081600</b></span>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-2 col-6">
+                                          <div class="mb-4">
+                                             <p class="text-primary mb-1"> BO ID</p>
+                                             <span><b>05119856</b></span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="tab-pane fade" id="segment" role="tabpanel" aria-labelledby="segment-tab">
+                           <h4>Segment Activation</h4>
+                           <div class="alert alert-primary" role="alert">
+                              You can place a request here to enable a segment which is not activated on your account. As per SEBI Regulations, if you wish to activate derivative trading on your account, it is mandatory to upload an income proof. <b><a href="#">More Info</a></b>
+                           </div>
+                           <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#segment-activation">Activate segments</button>
+                           <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#section-c">Section C</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- end of main-content -->
+            </div>
+         </div>
+      </div>
+      <div class="flex-grow-1"></div>
+      <div class="app-footer">
+         <div class="footer-bottom border-top pt-3 d-flex flex-column flex-sm-row align-items-center">
+            <span class="flex-grow-1"></span>
+            <div class="col-md-12 align-items-center">
+               <p class="m-0">&copy; 2020 AIRAN FINSTOCKS PVT. LTD. All rights reserved</p>
+            </div>
+         </div>
+      </div>
+      <!-- fotter end -->
+      </div>
+      <!--  Small Modal -->
+      <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle-1" aria-hidden="true">
+         <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle-1">Edit Profile Consent</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+               </div>
+               <div class="modal-body">
+                  <p class="d-flex">
+                     <label class="checkbox checkbox-outline-primary">
+                     <input type="checkbox"><span class="checkmark"></span>
+                     </label>
+                     I/WE hereby declare that the email ID being updated belongs to me/us. Further, I authorise Finwave to use this to send me any information/alert/email. This change will affect the Trading and Demat account that I hold with Finwave.
+                  </p>
+               </div>
+               <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                  <button class="btn btn-primary ml-2" type="button">Continue</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  Segment Modal -->
+      <div class="modal fade" id="segment-activation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Segment Activation</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+               </div>
+               <div class="modal-body">
+                  <div class="alert alert-primary" role="alert">
+                     Income proof upload is required only if enabling derivatives. <b><a href="#">More Info</a></b>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div style="height: 60%;">
+                           <h5 class="pt-2 pb-3"><b>Equity derivatives</b></h5>
+                           <label class="checkbox checkbox-outline-primary d-block">
+                           <input type="checkbox" checked="checked"><span class="pl-2">NSE - Futures & Options</span><span class="checkmark"></span>
+                           </label>
+                           <label class="checkbox checkbox-outline-primary d-block">
+                           <input type="checkbox"><span class="pl-2">BSE - Futures & Options</span><span class="checkmark"></span>
+                           </label>
+                        </div>
+                        <div>
+                           <h5 class="pt-2 pb-3"><b>Currency derivatives</b></h5>
+                           <label class="checkbox checkbox-outline-primary d-block">
+                           <input type="checkbox" checked="checked"><span class="pl-2">NSE - Currency Exchange</span><span class="checkmark"></span>
+                           </label>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <h5 class="pt-2 pb-2"><b>Currency derivatives</b></h5>
+                        <div class="form-group mb-3">
+                           <label for="picker1">Gross Income</label>
+                           <select class="form-control gross-income">
+                              <option>Select income range</option>
+                              <option>Below ₹ 1 Lac</option>
+                              <option>₹ 1 Lac to ₹ 5 Lac</option>
+                              <option>₹ 5 Lac to ₹ 10 Lac</option>
+                              <option>₹ 10 Lac to ₹ 25 Lac</option>
+                              <option>Above ₹ 1 Crore</option>
+                           </select>
+                        </div>
+                        <div class="input-group mb-3">
+                           <div class="custom-file">
+                              <input class="custom-file-input" id="inputGroupFile01" type="file" aria-describedby="inputGroupFileAddon01">
+                              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="picker1">File Password</label>
+                           <input class="form-control file-password" type="password" placeholder="Enter password" value="*********">
+                           <p class="small">*Required if income proof file is password protected</p>
+                        </div>
+                        <h5 class="pt-2 pb-2"><b>Commodity</b></h5>
+                        <label class="checkbox checkbox-outline-primary d-block">
+                        <input type="checkbox"><span class="pl-2">Commodity account</span><span class="checkmark"></span>
+                        </label>
+                     </div>
+                  </div>
+                  <button class="btn btn-primary" type="button">Submit</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  Section C Modal -->
+      <div class="modal fade" id="section-c" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Section C</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+               </div>
+               <div class="modal-body">
+                  <h6 class="mb-3">Trading Preferences</h6>
+                  <div class="row">
+                     <div class="col-md-4">
+                        <div class="form-group mb-3">
+                           <h6 class="pt-2 pb-2"><b>NSE CASH</b></h6>
+                           <input class="form-control w-100 m-0" id="firstName1" type="text">
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group mb-3">
+                           <h6 class="pt-2 pb-2"><b>BSE CASH</b></h6>
+                           <input class="form-control w-100 m-0" id="firstName1" type="text">
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group mb-3">
+                           <h6 class="pt-2 pb-2"><b>NSE F&O</b></h6>
+                           <input class="form-control w-100 m-0" id="firstName1" type="text">
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group mb-3">
+                           <h6 class="pt-2 pb-2"><b>NSE CURRENCY EXCHANGE</b></h6>
+                           <input class="form-control w-100 m-0" id="firstName1" type="text">
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group mb-3">
+                           <h6 class="pt-2 pb-2"><b>BSE CURRENCY EXCHANGE</b></h6>
+                           <input class="form-control w-100 m-0" id="firstName1" type="text">
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group mb-3">
+                           <h6 class="pt-2 pb-2"><b>BSE COMMODITY</b></h6>
+                           <input class="form-control w-100 m-0" id="firstName1" type="text">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="../../dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
+      <script src="../../dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
+      <script src="../../dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
+      <script src="../../dist-assets/js/scripts/script.min.js"></script>
+      <script src="../../dist-assets/js/scripts/sidebar-horizontal.script.js"></script>
+   </body>
+</html>

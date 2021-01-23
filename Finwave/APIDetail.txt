@@ -1,0 +1,6 @@
+http://14.98.138.58:8686/techexcelapi/index.cfm#
+Id - HITESHAPI
+Pass - Hitesh@api
+DB NAME - capsfo
+YEAR - 2020
+Testuser Name - A0108
