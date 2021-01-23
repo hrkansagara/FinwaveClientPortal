@@ -1,0 +1,242 @@
+﻿
+@{
+    ViewBag.Title = "_PartialPosition";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Content/js/plugins/datatables.min.js"></script>
+<script src="~/Content/js/scripts/datatables.script.js"></script>
+<script src="~/Content/js/scripts/datatables.script.min.js"></script>
+<script src="~/Content/js/plugins/calendar/jquery-ui.min.js"></script>
+
+<div class="main-content container-fluid">
+    <div class="money-info-section">
+        <div class="row">
+            <!-- ICON BG-->
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Money-Bag"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Current Value</p>
+                            <p class="text-primary text-14 line-height-1 mb-2">₹49,62,454.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Financial"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Investment Value</p>
+                            <p class="text-primary text-14 line-height-1 mb-2">₹48,72,228.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Line-Chart-2"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Today's P/L</p>
+                            <p class="text-danger text-14 line-height-1 t-font-boldest mb-2">₹-1,38,736.35<span class="text-small">(-2.85%)</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Money-2"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Unrealised P/L</p>
+                            <p class="text-primary text-14 line-height-1 mb-2">₹-90,225.97<span class="text-small">(-1.85%)</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Money-2"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Equity Balance</p>
+                            <p class="text-primary text-14 line-height-1 mb-2">₹-3,10,623.51<span class="text-small">(-1.85%)</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 chart-table">
+        <h4 class="mr-2"><i class="i i-Suitcase pr-2"></i>Position</h4>
+        <div class="space">
+            <div class="form-group row flex-grow-1">
+                <div class="col-md-3">
+                    <label>From Date</label>
+                    <input class="form-control w-100 m-0 form-control-rounded" type="date" id="FromDate" name="date" max="3000-12-31" min="1000-01-01">
+                </div>
+                <div class="col-md-3">
+                    <label>To Date</label>
+                    <input class="form-control w-100 m-0 form-control-rounded" type="date" id="ToDate" name="date" max="3000-12-31" min="1000-01-01">
+                </div>
+                <div class="col-md-1 align-self-end">
+                    <button id="btnView" class="btn btn-icon w-100 btn-rounded btn-primary mr-2">View</button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content p-0" id="profileTabContent">
+            <div class="tab-pane fade show active" id="asset" role="tabpanel">
+                <div class="tab tab-active" data-id="tab1">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @*<div class="d-block">
+                                <p>Last updated :Equity-2020/09/18 | MF-2020/09/17</p>
+                            </div>*@
+                        </div>
+                        <div class="col-md-6">
+                            <div class="float-right d-block">
+                                <a href="#"><i class="i i-Download pr-2"></i>Download: Xlsx </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="card card-jquery p-4 fulltable">
+                        <div class="table-responsive allocation-table-responsive">
+                            <table class="display table table-hover allocation-table" id="grdPositionDetails" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Script Name</th>
+                                        <th>Buy Qty</th>
+                                        <th>Buy Rate</th>
+                                        <th>Sell Qty</th>
+                                        <th>Sell Rate</th>
+                                        <th>Os Qty</th>
+                                        <th>Os Rate</th>
+                                        <th>Lot Size</th>
+                                        <th>Os Rate</th>
+                                        <th>Os Amount</th>
+                                        <th>Closing Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-2 card">
+            <div class="col-md-12 footer-shadow">
+                <h4 class="mt-3">Field Of Various Charges</h4>
+                <p>Auction Changes | tO Changes BSE | tO Charges NSE | SGST | CGST</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 footer-shadow1">
+            <h4 class="mt-4">Support</h4>
+            <p>NSE & BSE – SEBI Registration no.: INZ000031633 | MCX - SEBI Registration no.: INZ000038238 | CDSL - SEBI Registration no.: IN-DP-100-2015</p>
+            <p>
+                Disclaimer : Investment in securities market are subject to market risks, read all the related documents carefully before investing. Please refer the Risk Disclosure Document issued by SEBI and go through the Rights and Obligations and
+                Do’s and Dont’s issued by Stock Exchanges and Depositories before trading on the Stock Exchanges. For commodities derivatives please note that Commodities Derivatives are highly leveraged instruments. PMS is not offered in Commodity
+                Derivative Segment. Before investing in the asset class consider your investment objectives, level of experience and risk appetite carefully.
+            </p>
+            <p>Mutual funds disclaimer : Mutual Fund investment are subject to market risk. Read all the scheme related documents carefully before investing.</p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var table = $('#grdPositionDetails').dataTable({
+            serverSide: true,
+            processing: true, // for show progress bar
+            serverSide: true, // for process server side
+            filter: true, // this is for disable filter (search box)
+            orderMulti: false, // for disable multiple column at once
+                ajax: {
+                    url: '@Url.Action("GetPositionDetails", "Portfolio")',
+                    type: 'POST',
+                    datatype: 'json',
+                    data: function (data) {
+                        var FromDate = $('#FromDate').val();
+                        data.FromDate = FromDate;
+                        var ToDate = $('#ToDate').val();
+                        data.ToDate = ToDate;
+                    }
+                },
+                processing: true,
+                columns: [
+                    {
+                        data: 'SCRIP_NAME', name: "SCRIP_NAME"
+                    },
+                    {
+                        data: 'BUYQTY', name: "BUYQTY"
+                    },
+                    {
+                        data: 'BUYRATE', name: "BUYRATE"
+                    },
+                    {
+                        data: 'SALEQTY', name: "SALEQTY"
+                    },
+                    {
+                        data: 'SALERATE', name: "SALERATE"
+                    },
+                    {
+                        data: 'OPQTY', name: "OPQTY"
+                    },
+                    {
+                        data: 'OPRATE', name: "OPRATE"
+                    },
+                    {
+                        data: 'LONGQTY', name: "LONGQTY"
+                    },
+                    {
+                        data: 'OPRATE', name: "OPRATE"
+                    },
+                    {
+                        data: 'OPAMT', name: "OPAMT"
+                    },
+                    {
+                        data: 'CL_PRICE', name: "CL_PRICE"
+                    }
+                ]
+    })
+
+    $("#btnView").click(function () {
+        var To = "";
+        var From = "";
+        if ($('#ToDate').val() != null) {
+            To = $('#ToDate').val();
+        }
+        if ($('#FromDate').val() != null) {
+            From = $("#FromDate").val();
+        }
+        if (From != "" && To != "") {
+            if (From > To) {
+                Notify(false, 'from date must be less than to date.');
+                return false;
+            }
+            else {
+                table.fnDraw();
+            }
+        }
+        else {
+            Notify(false, 'From date and To date are required.');
+            return false;
+        }
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).on('click', '.table-dropdown.dropdown-menu', function (e) {
+        e.stopPropagation();
+    });
+
+
+</script>

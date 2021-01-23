@@ -1,0 +1,230 @@
+﻿
+@{
+    ViewBag.Title = "_PartialDPStatement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="money-info-section">
+        <div class="row">
+            <!-- ICON BG-->
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Money-Bag"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Current Value</p>
+                            <p class="text-primary text-14 line-height-1 mb-2">₹49,62,454.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Financial"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Investment Value</p>
+                            <p class="text-primary text-14 line-height-1 mb-2">₹48,72,228.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Line-Chart-2"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Today's P/L</p>
+                            <p class="text-danger text-14 line-height-1 t-font-boldest mb-2">₹-1,38,736.35<span class="text-small">(-2.85%)</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Money-2"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Unrealised P/L</p>
+                            <p class="text-primary text-14 line-height-1 mb-2">₹-90,225.97<span class="text-small">(-1.85%)</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-15 col">
+                <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                    <div class="card-body text-center">
+                        <i class="i-Money-2"></i>
+                        <div class="content">
+                            <p class="text-muted mt-2 mb-0">Equity Balance</p>
+                            <p class="text-primary text-14 line-height-1 mb-2">₹-3,10,623.51<span class="text-small">(-1.85%)</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 chart-table">
+        <h4 class="mr-2"><i class="i i-Suitcase pr-2"></i>DP Transaction Statement</h4>
+        <div class="space">
+            <form>
+                <div class="form-group row flex-grow-1">
+                    <div class="col-md-3">
+                        <label>BIO ID</label>
+                        <select name="" aria-controls="" class="form-control w-100 m-0 form-control-rounded">
+                            <option value="Equity/Derivative/Currency">Equity/Derivative/Currency/MF</option>
+                            <option value="Equity">Equity</option>
+                            <option value="Derivative">Derivative</option>
+                            <option value="Commodity">Commodity</option>
+                            <option value="Currency">Currency</option>
+                            <option value="NSE_CASH" selected="">NSE_CASH</option>
+                            <option value="BSE_CASH">BSE_CASH</option>
+                            <option value="NSE_FNO">NSE_FNO</option>
+                            <option value="BSE_CASH[Margin]">BSE_CASH[Margin]</option>
+                            <option value="NSE_CASH[Margin]">NSE_CASH[Margin]</option>
+                            <option value="NSE_FNO[Margin]">NSE_FNO[Margin]</option>
+                            <option value="CDSL">CDSL</option>
+                            <option value="ABRK">Advance Brokerage</option>
+                            <option value="MTFF">MTF Funding</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label>From Date</label>
+                        <input class="form-control w-100 m-0 form-control-rounded" type="date" name="date" max="3000-12-31" min="1000-01-01">
+                    </div>
+                    <div class="col-md-3">
+                        <label>To Date</label>
+                        <input class="form-control w-100 m-0 form-control-rounded" type="date" name="date" max="3000-12-31" min="1000-01-01">
+                    </div>
+                    <div class="col-md-2">
+                        <label>ISAN/Script</label>
+                        <input class="form-control w-100 m-0 form-control-rounded" type="text" max="3000-12-31" min="1000-01-01">
+                    </div>
+                    <div class="col-md-1 align-self-end">
+                        <button class="btn btn-icon w-100 btn-rounded btn-primary mr-2">View</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="tab-content p-0" id="profileTabContent">
+            <div class="tab-pane fade show active" id="asset" role="tabpanel">
+                <div class="tab tab-active" data-id="tab1">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-block">
+                                <p>Last updated :Equity-2020/09/18 | MF-2020/09/17</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="float-right d-block">
+                                <a href="#"><i class="i i-Download pr-2"></i>Download: Xlsx | Xlxs data | PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-2  ">
+                    <div class="card card-jquery p-4 fulltable">
+                        <div class="table-responsive allocation-table-responsive">
+                            <table class="display table table-hover allocation-table" id="ul-contact-list" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Script Name</th>
+                                        <th>ISIN</th>
+                                        <th>Transaction Details</th>
+                                        <th>Quantity</th>
+                                        <th>Fees</th>
+                                        <th>Fees</th>
+                                        <th>Lot Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>EF APOLITAC</td>
+                                        <td> 5000</td>
+                                        <td>124.0</td>
+                                        <td>0</td>
+                                        <td>0.000</td>
+                                        <td>8000</td>
+                                        <td>4000</td>
+                                        <td>6000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EF APOLITAC</td>
+                                        <td> 5000</td>
+                                        <td>124.0</td>
+                                        <td>0</td>
+                                        <td>0.000</td>
+                                        <td>8000</td>
+                                        <td>4000</td>
+                                        <td>6000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EF APOLITAC</td>
+                                        <td> 5000</td>
+                                        <td>124.0</td>
+                                        <td>0</td>
+                                        <td>0.000</td>
+                                        <td>8000</td>
+                                        <td>4000</td>
+                                        <td>6000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EF APOLITAC</td>
+                                        <td> 5000</td>
+                                        <td>124.0</td>
+                                        <td>0</td>
+                                        <td>0.000</td>
+                                        <td>8000</td>
+                                        <td>4000</td>
+                                        <td>6000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EF APOLITAC</td>
+                                        <td> 5000</td>
+                                        <td>124.0</td>
+                                        <td>0</td>
+                                        <td>0.000</td>
+                                        <td>8000</td>
+                                        <td>4000</td>
+                                        <td>6000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EF APOLITAC</td>
+                                        <td> 5000</td>
+                                        <td>124.0</td>
+                                        <td>0</td>
+                                        <td>0.000</td>
+                                        <td>8000</td>
+                                        <td>4000</td>
+                                        <td>6000.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-2 card">
+            <div class="col-md-12 footer-shadow">
+                <h4 class="mt-3">Field Of Various Charges</h4>
+                <p>Auction Changes | tO Changes BSE | tO Charges NSE | SGST | CGST</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 footer-shadow1">
+            <h4 class="mt-4">Support</h4>
+            <p>NSE & BSE – SEBI Registration no.: INZ000031633 | MCX - SEBI Registration no.: INZ000038238 | CDSL - SEBI Registration no.: IN-DP-100-2015</p>
+            <p>
+                Disclaimer : Investment in securities market are subject to market risks, read all the related documents carefully before investing. Please refer the Risk Disclosure Document issued by SEBI and go through the Rights and Obligations and
+                Do’s and Dont’s issued by Stock Exchanges and Depositories before trading on the Stock Exchanges. For commodities derivatives please note that Commodities Derivatives are highly leveraged instruments. PMS is not offered in Commodity
+                Derivative Segment. Before investing in the asset class consider your investment objectives, level of experience and risk appetite carefully.
+            </p>
+            <p>Mutual funds disclaimer : Mutual Fund investment are subject to market risk. Read all the scheme related documents carefully before investing.</p>
+        </div>
+    </div>
+</div>
+

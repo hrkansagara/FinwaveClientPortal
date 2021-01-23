@@ -1,0 +1,358 @@
+﻿@using FinwaveClientFrontOffice.Models;
+@model Account
+
+    @{
+        ViewBag.Title = "_PartialAccountDetail";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <div class="main-content container-fluid">
+        <div class="money-info-section">
+            <div class="row">
+                <!-- ICON BG-->
+                <div class="col-md-15 col">
+                    <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                        <div class="card-body text-center">
+                            <i class="i-Money-Bag"></i>
+                            <div class="content">
+                                <p class="text-muted mt-2 mb-0">Current Value</p>
+                                <p class="text-primary text-14 line-height-1 mb-2">₹49,62,454.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-15 col">
+                    <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                        <div class="card-body text-center">
+                            <i class="i-Financial"></i>
+                            <div class="content">
+                                <p class="text-muted mt-2 mb-0">Investment Value</p>
+                                <p class="text-primary text-14 line-height-1 mb-2">₹48,72,228.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-15 col">
+                    <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                        <div class="card-body text-center">
+                            <i class="i-Line-Chart-2"></i>
+                            <div class="content">
+                                <p class="text-muted mt-2 mb-0">Today's P/L</p>
+                                <p class="text-danger text-14 line-height-1 t-font-boldest mb-2">₹-1,38,736.35<span class="text-small">(-2.85%)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-15 col">
+                    <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                        <div class="card-body text-center">
+                            <i class="i-Money-2"></i>
+                            <div class="content">
+                                <p class="text-muted mt-2 mb-0">Unrealised P/L</p>
+                                <p class="text-primary text-14 line-height-1 mb-2">₹-90,225.97<span class="text-small">(-1.85%)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-15 col">
+                    <div class="card value-box card-icon-bg card-icon-bg-primary o-hidden mb-4">
+                        <div class="card-body text-center">
+                            <i class="i-Money-2"></i>
+                            <div class="content">
+                                <p class="text-muted mt-2 mb-0">Equity Balance</p>
+                                <p class="text-primary text-14 line-height-1 mb-2">₹-3,10,623.51<span class="text-small">(-1.85%)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb">
+            <h1 class="mr-2">My Account</h1>
+            <ul>
+                <li>User Profile</li>
+            </ul>
+        </div>
+        <div class="separator-breadcrumb border-top"></div>
+        <div class="card user-profile o-hidden mb-4">
+            <div class="user-info row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img class="profile-picture avatar-lg mb-2" src="~/Content/images/faces/1.jpg" alt="" style="width: 80px; margin-left: auto; margin-right: auto; text-align: center;
+                                 display: table-cell; vertical-align: middle;" />
+                        </div>
+                        <div class="col-md-10 align-self-center">
+                            <p class="m-0 text-24">@Model.CLIENT_NAME</p>
+                            <p class="text-muted m-0">Client ID: <span><b>@Model.CLIENT_ID</b></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="nav nav-tabs profile-nav mb-4" id="profileTab" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" id="timeline-tab" data-toggle="tab" href="#personal" role="tab" aria-controls="personal" aria-selected="false">Personal Information</a></li>
+                    <li class="nav-item"><a class="nav-link" id="about-tab" data-toggle="tab" href="#bank-details" role="tab" aria-controls="bank-details" aria-selected="true">Bank Details</a></li>
+                    <li class="nav-item"><a class="nav-link" id="friends-tab" data-toggle="tab" href="#demat" role="tab" aria-controls="demat" aria-selected="false">Demat Details</a></li>
+                    <li class="nav-item"><a class="nav-link" id="photos-tab" data-toggle="tab" href="#segment" role="tab" aria-controls="segment" aria-selected="false">Segment Activation</a></li>
+                </ul>
+                <div class="tab-content" id="profileTabContent">
+                    <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+                        <h4>Personal Information</h4>
+                        <div class="alert alert-primary" role="alert">
+                            Updating e-mail and phone number will take up to 24 hours to reflect (owing to updation on exchanges and depositories)
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-3 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1">Name</p>
+                                    <span><b>@Model.CLIENT_NAME</b></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1">Client Code</p>
+                                    <span><b>@Model.CLIENT_ID</b></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1">Birth Date</p>
+                                    <span><b>@Model.BIRTH_DATE</b></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"> Gender</p>
+                                    <span><b>@Model.SEX</b></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1">
+                                        E-mail ID
+                                        <a href="#"><i class="i-Pen-2 text-16 mr-1" type="button" data-toggle="modal" data-target=".bd-example-modal-md"></i></a>
+                                    </p>
+                                    <span><b>@Model.CLIENT_ID_MAIL</b></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1">
+                                        Mobile No.
+                                        <a href="#"><i class="i-Pen-2 text-16 mr-1" type="button" data-toggle="modal" data-target=".bd-example-modal-md"></i></a>
+                                    </p>
+                                    <span><b>@Model.MOBILE_NO</b></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1">PAN</p>
+                                    <span><b>@Model.PAN_NO</b></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"> Nominee Name</p>
+                                    <span><b>@Model.NOMINEE_NAME</b></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-12">
+                                <div class="mb-4">
+                                    <p class="text-primary mb-1"> Address</p>
+                                    <span><b>@Model.ADDRESS </b></span>
+                                    @*@Model.CITY - @Model.PIN_CODE @Model.STATE*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="bank-details" role="tabpanel" aria-labelledby="bank-details-tab">
+                        <h6 class="tab-sub-heading">BANK DETAILS</h6>
+                        <div class="alert alert-primary" role="alert">
+                            <p>Please map your own bank account to your Trading/Demat account. You cannot link a third party bank account to your trading/Demat account.</p>
+                            <p>You can Link multiple Bank accounts with Your Trading Account. Post successful verification, your existing primary bank will be mapped as a secondary bank account. You will receive your funds Payout in your Primary Bank Account.</p>
+                            <p class="mb-0">Charge of Rs.50 + GST will be applicable for Bank Account Modification.</p>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-12 back-office-bank">
+                                <div class="p-3 pt-4">
+                                    <h4 class="pb-4">Primary Bank Detail</h4>
+                                    <div class="row">
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> Bank Name</p>
+                                                <span><b>@Model.objBankAccountDetails.BANK_NAME</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1">Bank Branch</p>
+                                                <span><b>@Model.objBankAccountDetails.BANK_ADDRESS</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> Bank Account Number</p>
+                                                <span><b>@Model.objBankAccountDetails.BANK_ACNO</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> IFSC Code</p>
+                                                <span><b>@Model.objBankAccountDetails.IFSC_CODE</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> MICR Code</p>
+                                                <span><b>@Model.objBankAccountDetails.MICR_CODE</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> Account Type <span class="badge badge-primary">Default Account</span></p>
+                                                <span><b>@Model.objBankAccountDetails.BANK_ACCTYPE</b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <hr class="bank-details-seperator">
+                                    </div>
+                                </div>
+                            </div>
+                            @if (Model.lstBankAccountDetails.Count > 0)
+                            {
+                            <div class="col-md-12 back-office-bank">
+                                <div class="p-3 pt-4">
+                                    <h4 class="pb-4">Secondary Bank Details</h4>
+                                    <div class="row">
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> Bank Name</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1">Bank Branch</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> Bank Account Number</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> IFSC Code</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> MICR Code</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> Account Type</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @foreach (var bank in Model.lstBankAccountDetails)
+                                    {
+                                        <div class="row">
+                                            <div class="col-md-2 col-6">
+                                                <div class="mb-4">
+                                                    <span><b>@bank.BANK_NAME</b></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-6">
+                                                <div class="mb-4">
+                                                    <span><b>@bank.BANK_ADDRESS</b></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-6">
+                                                <div class="mb-4">
+                                                    <span><b>@bank.BANK_ACNO</b></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-6">
+                                                <div class="mb-4">
+                                                    <span><b>@bank.IFSC_CODE</b></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-6">
+                                                <div class="mb-4">
+                                                    <span><b>@bank.MICR_CODE</b></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-6">
+                                                <div class="mb-4">
+                                                    <span><b>@bank.BANK_ACCTYPE</b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }                                    
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="demat" role="tabpanel" aria-labelledby="demat-tab">
+                        <div class="row">
+                            <div class="col-md-12 back-office-bank">
+                                <div class="p-3 pt-4">
+                                    <h4 class="pb-4">Demat Details</h4>
+                                    <div class="row">
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> Depository Name</p>
+                                                <span><b>@Model.DEPOSITORY</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1">Depository Participant (DP)</p>
+                                                <span><b>@Model.DP_NAME</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> Demat ID</p>
+                                                <span><b>@Model.CLIENT_DP_CODE</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> DP ID</p>
+                                                <span><b>@Model.DP_ID</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="mb-4">
+                                                <p class="text-primary mb-1"> BO ID</p>
+                                                <span><b><span><b>@Model.CLIENT_DP_CODE.Substring(8)</b></span></b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="segment" role="tabpanel" aria-labelledby="segment-tab">
+                        <h4>Segment Activation</h4>
+                        <div class="alert alert-primary" role="alert">
+                            You can place a request here to enable a segment which is not activated on your account. As per SEBI Regulations, if you wish to activate derivative trading on your account, it is mandatory to upload an income proof. <b><a href="#">More Info</a></b>
+                        </div>
+                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#segment-activation">Activate segments</button>
+                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#section-c">Section C</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of main-content -->
+    </div>
+

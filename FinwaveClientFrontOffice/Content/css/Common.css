@@ -1,0 +1,45 @@
+﻿
+
+.notifyoverlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 9999;
+}
+
+.alerttop {
+    position: fixed;
+    z-index: 9999999;
+    top: 140px;
+    min-width: 400px;
+    width: 60%;
+    max-width: 700px;
+    margin: 10px auto;
+    left: 0px;
+    right: 0px;
+}
+
+    .alerttop label {
+        width: 95% !important;
+    }
+
+.alert-title {
+    background: #4f677b;
+    border-color: #4f677b;
+    color: #fff;
+    padding: 4px 10px;
+}
+
+    .alert-title .alrt-til {
+        line-height: 30px;
+        font-size: 16px;
+    }
+
+    .alert-title .btn {
+        padding: 4px 10px;
+    }
