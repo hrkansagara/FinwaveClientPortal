@@ -1,32 +1,67 @@
 ﻿<!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign in | Finware</title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet">
-    <link href="~/Content/css/themes/lite-purple.min.css" rel="stylesheet">
+    <title>Signin | Admin </title>
+    <link href="~/Content/Login/dist-assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,400i,600,700,800,900" rel="stylesheet">
+    <link href="~/Content/Login/dist-assets/css/themes/lite-purple.css" rel="stylesheet">
     <script src="~/Content/js/plugins/jquery-3.3.1.min.js"></script>
-    <script src="~/Content/js/plugins/bootstrap.bundle.min.js"></script>
-    <script src="~/Content/js/plugins/calendar/jquery.validate.js"></script>
-    <script src="~/Content/js/plugins/calendar/jquery.validate.min.js"></script>
-    <script src="~/Content/js/jquery.validate.unobtrusive.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+    <script src="~/Content/js/jquery-1.10.2.min.js"></script>
+    @*<script src="~/Scripts/jquery.validate.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
     <script src="~/Content/js/jquery.validate.unobtrusive.min.js"></script>
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+    <script src="~/Content/js/jquery.unobtrusive-ajax.min.js"></script>
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+    <link href="~/Content/css/Common.css" rel="stylesheet" />
+    <script src="~/Content/js/Common.js"></script>
+    <link rel="stylesheet" href="~/Content/css/plugins/datatables.min.css" />
+    <link href="~/Content/css/Common.css" rel="stylesheet" />
 </head>
-<div class="auth-layout-wrap" style="background-image: url('../../Content/images/photo-wide-4.jpg')">
-    <div class="auth-content">
-        <div class="card o-hidden">
+<body>
+    <section class="about-us about-us-mobile">
+        <div class="signin-content-ipad">
+            <p>Experience the all - <br>new Finwave Workspace</p>
+        </div>
+        <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="p-4">
-                        <div class="auth-logo text-center mb-4"><img src="~/Content/images/logo.png" alt=""></div>
+                <div class="signin-content-mobile">
+                    <p>Experience the all - <br>new Finwave Workspace</p>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-12 card workspace-form-signin">
+                    <div class="p-4 pnew">
+                        <div class="auth-logo"><img src="~/Content/Login/dist-assets/images/Workspace-Logo.svg" alt=""></div>
+                      
                         @RenderBody()
                     </div>
                 </div>
-                <div class="col-md-6 text-center" style="background-size: cover;background-image: url('../../Content/images/photo-long-3.jpg')">
+                <div class="col-lg-7 col-md-7 col-sm-12 mobile-none">
+                    <div class="signin-content">
+                        <h3>
+                            Be A Smart Investor &<br>
+                            Ride The Growth Tide With Finwave
+                        </h3>
+                        <p>Experience the all - new Finwave Workspace</p>
+                    </div>
+                    <figure class="about-img">
+                        <img src="~/Content/Login/dist-assets/images/desk.png" alt="about titan builders photo">
+                    </figure>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+        <div class="copy-right">
+            <p>© 2010 AIRAN FINSTOCKS PVT. LTD. All rights reserved</p>
+        </div>
+        <div class="thinkpad-copy-right d-flex-01 justify-content-center">
+            <p>© 2010 AIRAN FINSTOCKS PVT. LTD. All rights reserved</p>
+        </div>
+    </section>
+</body>
+</html>

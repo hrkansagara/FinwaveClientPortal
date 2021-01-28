@@ -70,6 +70,22 @@ namespace FinwaveClientFrontOffice.Models
         public string STATE { get; set; }
         public string PIN_CODE { get; set; }
         public string DEPOSITORY { get; set; }
+        public string BANK_NAME { get; set; }
+        public string MobileOtp { get; set; }
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string UserFullName { get; set; }
+        public string UserTypeId { get; set; }
+        public string EmailId { get; set; }
+        public string Mobile { get; set; }
+        public string IsChangePassword { get; set; }
+        public bool IsActive { get; set; }
+        public int EmployeeId { get; set; }
+        public int BranchId { get; set; }
+        public DateTime? DateAdded { get; set; }
+        public string AddedBy { get; set; }
+        public string ConformPassward { get; set; }
     }
 
     public class BankAccountDetails

@@ -43,3 +43,36 @@
     .alert-title .btn {
         padding: 4px 10px;
     }
+
+
+.anchor-button {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#idResetCaptcha {
+    position: relative;
+    left: 250px;
+}
+
+.anchor-button {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font-family: arial, sans-serif;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.text-danger {
+    color: #ff0000!important;
+    font-size:medium;
+}

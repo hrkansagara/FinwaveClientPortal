@@ -1,6 +1,7 @@
-﻿
+﻿@using FinwaveClientFrontOffice.Common;
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="main-content container-fluid">
@@ -65,7 +66,7 @@
         </div>
     </div>
     <div class="breadcrumb">
-        <h1 class="mr-2">Hi, Priyank</h1>
+        <h1 class="mr-2">Hi, @SessionHelper.CurrentUser.UserFullName</h1>
     </div>
     <div class="separator-breadcrumb border-top"></div>
     <div class="row mb-4">

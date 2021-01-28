@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinwaveClientFrontOffice.Common;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Web;
@@ -25,5 +26,10 @@ namespace FinwaveClientFrontOffice.Models
         public bool IsAdmin { get; set; }
         public int RoleID { get; set; }
         public bool IsPassValid { get; set; }
+    }
+
+    public class LoginResponse : Response
+    {
+        public Login oLogin { get; set; }
     }
 }

@@ -4,21 +4,42 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
-
+<h1 class="mb-4 text-login">Login</h1>
 <h1 class="mb-3 text-18">Sign In</h1>
+@if (TempData["Notification"] != null)
+{
+    <script type="text/javascript">
+        showNotificationMessage('@Html.Raw(HttpUtility.JavaScriptStringEncode(Convert.ToString(TempData["Notification"])))');
+    </script>
+}
 @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @id = "frmLoginUser" }))
 {
-    <div class="form-group">
-        <label for="email">Email address</label>
-        @Html.TextBoxFor(e => e.UserName, new { @class = "form-control form-control-rounded" })
+    <div class="form-group p-11 ico-add">
+        @Html.TextBoxFor(e => e.UserName, new { @class = "form-control-1 form-control-rounded", placeholder = "User ID", autocomplete = "off" })
         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-        @*<input class="form-control form-control-rounded" id="email" type="email">*@
     </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        @Html.PasswordFor(e => e.Password, new { @class = "form-control form-control-rounded" })
+    <div class="form-group p-11 ico-add-01">
+        @Html.PasswordFor(e => e.Password, new { @class = "form-control-1 form-control-rounded passwork-login", placeholder = "password", autocomplete = "off" })
         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        @*<input class="form-control form-control-rounded" id="password" type="password">*@
     </div>
-    <button type="submit" class="btn btn-rounded btn-primary btn-block mt-2">Sign In</button>
+    <button type="submit" class="btn btn-rounded btn-primary1 btn-primary-sing-in-01 btn-block mt-5 login-button-margin log-btu">Login</button>
 }
+
+<div class="row mt-new">
+    <div class="col-md-5 log-bt">
+        <div class="left-ac tc mar1">
+            <a class="text-muted" href='@Url.Action("ForgotPassward","Login")'>
+                <u>Forgot Password?</u>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-7 log-bt">
+        <!-- <div class="mt-1 pl-13 tc mar"> -->
+        <div class="left-ac tc mar">
+            <label>Don’t have an account?</label>
+            <a class="text-muted" style="cursor:pointer" href='@Url.Action("UserRegistar","Login")'>
+                <u>Register Now!</u>
+            </a>
+        </div>
+    </div>
+</div>
