@@ -98,7 +98,17 @@ namespace FinwaveClientFrontOffice.Controllers
         {
             SessionHelper.CurrentOtpUser = null;
             List<AccountModel> lstAccount = new List<AccountModel>();
+
             SaveResponse saveResponse = new SaveResponse();
+            var login = new Login()
+            {
+                UserName = oUser.UserName
+            };
+            var oLogin = objLoginService.GetUserByUserName(login);
+            if(oLogin != null)
+            {
+                return Json(new SaveResponse() { Success = false, ResponseString = "UserName already exist." });
+            }
             var responce = objLoginService.GetClientBankAllDetailByClientCode(oUser.ClientCode);
             var result = responce.Content.ReadAsStringAsync().Result;
             JArray jarr = null;
@@ -147,12 +157,12 @@ namespace FinwaveClientFrontOffice.Controllers
                     Random generator = new Random();
                     oAccountModel.MobileOtp = generator.Next(0, 1000000).ToString("D6");
                     SessionHelper.CurrentOtpUser = oAccountModel;
-                    //Send otp on mobile 
+                    //Send otp on mobile
                     //var sms = new SendSMS();
                     //sms.mobile = "7984452408";// oAccountModel.MOBILE_NO;
                     //sms.message = oAccountModel.MobileOtp;
                     //sms.apicall();
-                    // end
+                    //end
                     saveResponse.Success = true;
                     saveResponse.Data = oAccountModel.MobileOtp;
                     saveResponse.ResponseString = "Otp sent on your registered mobile number.";
@@ -190,6 +200,7 @@ namespace FinwaveClientFrontOffice.Controllers
                 oLogin.EmailId = accountModel.EmailId;
                 oLogin.Mobile = accountModel.Mobile;
                 SessionHelper.CurrentUser = oLogin;
+                SessionHelper.CurrentOtpUser = null;
                 TempData["Notification"] = JsonConvert.SerializeObject(userResponse);
                 return RedirectToAction("Index", "Dashboard");
             }
@@ -241,8 +252,16 @@ namespace FinwaveClientFrontOffice.Controllers
         {
             SaveResponse oSaveResponse = new SaveResponse();
             //Add Logic - resend otp
+            Random generator = new Random();
+            SessionHelper.CurrentOtpUser.MobileOtp = generator.Next(0, 1000000).ToString("D6");
+            //Send otp on mobile
+            var sms = new SendSMS();
+            sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
+            sms.message = SessionHelper.CurrentOtpUser.MobileOtp;
+            sms.apicall();
+            //end
             oSaveResponse.Success = true;
-            oSaveResponse.ResponseString = "Otp send successfully.";
+            oSaveResponse.ResponseString = "Otp sent successfully.";
             return Json(oSaveResponse);
         }
 
@@ -255,6 +274,8 @@ namespace FinwaveClientFrontOffice.Controllers
             oLogin = objLoginService.UserDetailByUserName(oLogin);
             if (oLogin != null)
             {
+                Random generator = new Random();
+                oLogin.Password = generator.Next(0, 1000000).ToString("D6");
                 if (oUser.ReceiveType == "Email")
                 {
                     //Add Logic for mail
@@ -262,9 +283,14 @@ namespace FinwaveClientFrontOffice.Controllers
                 else
                 {
                     //Add Logic -mobile for sent passward
+                    //Send otp on mobile
+                    var sms = new SendSMS();
+                    sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
+                    sms.message = oLogin.Password;
+                    sms.apicall();
+                    //end
                 }
-                Random generator = new Random();
-                oLogin.Password = generator.Next(0, 1000000).ToString("D6");
+
                 oLogin.Password = PasswordSecurity.EncryptPassword(oLogin.Password);
                 oSaveResponse = objLoginService.UpdatePasswardByClientname(oLogin);
             }

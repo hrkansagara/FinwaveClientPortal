@@ -10,5 +10,7 @@ namespace FinwaveClientFrontOffice.Repositories
     {
         Login LoginUser(Login oLogin);
         Login UserDetailByUserName(Login oLogin);
+
+        Login GetUserByUserName(Login oLogin);
     }
 }

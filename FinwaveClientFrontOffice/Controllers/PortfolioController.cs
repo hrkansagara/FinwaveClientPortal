@@ -1,4 +1,5 @@
 ﻿using FinwaveClientFrontOffice.Authorization;
+using FinwaveClientFrontOffice.Common;
 using FinwaveClientFrontOffice.Models;
 using FinwaveClientFrontOffice.Services;
 using Newtonsoft.Json.Linq;
@@ -77,7 +78,7 @@ namespace FinwaveClientFrontOffice.Controllers
                     DateTime date = DateTime.ParseExact(fromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                     oCommonsearch.FromDate = date.ToString("dd/MM/yyyy");
                 }
-                oCommonsearch.ClientCode = "A0108";
+                oCommonsearch.ClientCode = SessionHelper.CurrentUser.UserName;//"A0108";
                 oCommonsearch.CompanyCode = "NSE_FNO";
 
                 var responce = _portfolioService.GetClientPositionDetails(oCommonsearch);
@@ -351,7 +352,7 @@ namespace FinwaveClientFrontOffice.Controllers
                     oCommonsearch.ToDate = date.ToString("dd/MM/yyyy");
                 }
                 //oCommonsearch.ToDate = "15/04/2020";
-                oCommonsearch.ClientCode = "A0108";
+                oCommonsearch.ClientCode = SessionHelper.CurrentUser.UserName;// "A0108";
 
                 var responce = _portfolioService.GetHoldingDetails(oCommonsearch);
                 if (responce.IsSuccessStatusCode)

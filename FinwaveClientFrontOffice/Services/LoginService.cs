@@ -32,6 +32,16 @@ namespace FinwaveClientFrontOffice.Services
         }
 
         /// <summary>
+        /// Get User By user name
+        /// </summary>
+        /// <param name="oLogin"></param>
+        /// <returns></returns>
+        public Login GetUserByUserName(Login oLogin)
+        {
+            return _objLoginRepository.GetUserByUserName(oLogin);
+        }
+
+        /// <summary>
         /// LoginUser
         /// </summary>
         /// <param name="oLogin"></param>

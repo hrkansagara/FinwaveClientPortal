@@ -9,5 +9,7 @@ namespace FinwaveClientFrontOffice.Services
     public interface ILoginService
     {
         Login LoginUser(Login oLogin);
+
+        Login GetUserByUserName(Login oLogin);
     }
 }

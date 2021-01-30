@@ -3,7 +3,6 @@ using FinwaveClientFrontOffice.Common;
 using FinwaveClientFrontOffice.Models;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace FinwaveClientFrontOffice.Repositories
@@ -33,6 +32,33 @@ namespace FinwaveClientFrontOffice.Repositories
             }
         }
 
+        /// <summary>
+        /// Get user by user name
+        /// </summary>
+        /// <param name="oLogin"></param>
+        /// <returns></returns>
+        public Login GetUserByUserName(Login oLogin)
+        {
+            try
+            {
+                using (IDbConnection connection = OpenConnection())
+                {
+                    var o = new DynamicParameters();
+                    o.Add("@UserName", oLogin.UserName);
+                    return connection.Query<Login>("usp_GetUserLoginDatabyUserName", o, commandType: CommandType.StoredProcedure, commandTimeout: 900).ToList().FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// User Detail By UserName
+        /// </summary>
+        /// <param name="oLogin"></param>
+        /// <returns></returns>
         public Login UserDetailByUserName(Login oLogin)
         {
             try
@@ -50,6 +76,11 @@ namespace FinwaveClientFrontOffice.Repositories
             }
         }
 
+        /// <summary>
+        /// Update Passward By Clientname
+        /// </summary>
+        /// <param name="oLogin"></param>
+        /// <returns></returns>
         public SaveResponse UpdatePasswardByClientname(Login oLogin)
         {
             try
@@ -69,7 +100,11 @@ namespace FinwaveClientFrontOffice.Repositories
             }
         }
 
-
+        /// <summary>
+        /// SaveUserDetails
+        /// </summary>
+        /// <param name="oAccountModel"></param>
+        /// <returns></returns>
         public SaveResponse SaveUserDetails(AccountModel oAccountModel)
         {
             try
@@ -92,12 +127,6 @@ namespace FinwaveClientFrontOffice.Repositories
                 return new SaveResponse() { Success = false, ResponseString = ex.Message };
             }
         }
-
-        //#region Dispose
-        //public void Dispose()
-        //{
-        //    _connection.Dispose();
-        //}
-        //#endregion
+        
     }
 }

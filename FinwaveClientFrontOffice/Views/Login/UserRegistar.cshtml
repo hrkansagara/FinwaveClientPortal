@@ -47,7 +47,7 @@
         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         @Html.PasswordFor(e => e.ConformPassword, new { @class = "form-control-1 form-control-rounded passwork-login", placeholder = "Conform password", autocomplete = "off" })
         @Html.ValidationMessageFor(model => model.ConformPassword, "", new { @class = "text-danger" })
-        <button type="submit" id="btnSignIn" class="btn btn-rounded btn-primary1 btn-primary-sing-in-01 btn-block mt-2 p-22 reset-button-01">Sign In</button>
+        <button type="button" id="btnSignIn" class="btn btn-rounded btn-primary1 btn-primary-sing-in-01 btn-block mt-2 p-22 reset-button-01">Sign In</button>
     }
 </div>
 <div class="row">
@@ -138,22 +138,14 @@
         });
     });
 
-    function OnSaveUserDetailsBegin() {
-        var strMobileOtp = [];
+    $("#idUserRegistar").off('click', '#btnSignIn');
+    $("#idUserRegistar").on('click', '#btnSignIn', function () {
+        var strMobileOtp = "";
         $(".otp-number-input").each(function () {
             strMobileOtp += $(this).val()
         });
         $("#MobileOtp").val(strMobileOtp);
-    }
-
-    //$("#idUserRegistar").off('click', '#btnSignIn');
-    //$("#idUserRegistar").on('click', '#btnSignIn', function () {
-    //    var strMobileOtp = [];
-    //    $(".otp-number-input").each(function () {
-    //        strMobileOtp += $(this).val()
-    //    });
-    //    $("#MobileOtp").val(strMobileOtp);
-    //    $("#frmSaveUserDetails").submit();
-    //});
+        $("#frmSaveUserDetails").submit();
+    });
 
 </script>

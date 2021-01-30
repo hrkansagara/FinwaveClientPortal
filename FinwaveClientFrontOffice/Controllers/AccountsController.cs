@@ -1,4 +1,5 @@
 ﻿using FinwaveClientFrontOffice.Authorization;
+using FinwaveClientFrontOffice.Common;
 using FinwaveClientFrontOffice.Models;
 using FinwaveClientFrontOffice.Services;
 using Newtonsoft.Json.Linq;
@@ -28,7 +29,7 @@ namespace FinwaveClientFrontOffice.Controllers
         {
             List<AccountModel> lstAccount = new List<AccountModel>();
             var account = new Account();
-            string ClientCode = "I0225";
+            string ClientCode = SessionHelper.CurrentUser.UserName;//"I0225";
             var responce = _accountService.GetClientDetailByClientCode(ClientCode);
             if(responce.IsSuccessStatusCode)
             {
