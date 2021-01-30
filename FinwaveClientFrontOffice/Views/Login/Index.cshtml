@@ -12,6 +12,7 @@
         showNotificationMessage('@Html.Raw(HttpUtility.JavaScriptStringEncode(Convert.ToString(TempData["Notification"])))');
     </script>
 }
+
 @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @id = "frmLoginUser" }))
 {
     <div class="form-group p-11 ico-add">
