@@ -1,12 +1,10 @@
-﻿using FinwaveClientFrontOffice.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using FinwaveClientFrontOffice.Authorization;
+using FinwaveClientFrontOffice.Services;
 using System.Web.Mvc;
 
 namespace FinwaveClientFrontOffice.Controllers
 {
+    [UserAuthorization]
     public class DashboardController : Controller
     {
         private readonly IDashboardService _dashboardService;

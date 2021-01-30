@@ -13,9 +13,9 @@ namespace FinwaveClientFrontOffice.Controllers
     public class LoginController : Controller
     {
         private LoginService objLoginService;
-        public LoginController()
+        public LoginController(LoginService _objLoginService)
         {
-            objLoginService = new LoginService();
+            objLoginService = _objLoginService;
         }
 
         // GET: Login
@@ -144,9 +144,15 @@ namespace FinwaveClientFrontOffice.Controllers
                     Random generator = new Random();
                     oAccountModel.MobileOtp = generator.Next(0, 1000000).ToString("D6");
                     SessionHelper.CurrentOtpUser = oAccountModel;
+                    //Send otp on mobile 
+                    //var sms = new SendSMS();
+                    //sms.mobile = "7984452408";// oAccountModel.MOBILE_NO;
+                    //sms.message = oAccountModel.MobileOtp;
+                    //sms.apicall();
+                    // end
                     saveResponse.Success = true;
                     saveResponse.Data = oAccountModel.MobileOtp;
-                    saveResponse.ResponseString = "Otp sent on your registed mobile number.";
+                    saveResponse.ResponseString = "Otp sent on your registered mobile number.";
                 }
                 else
                 {

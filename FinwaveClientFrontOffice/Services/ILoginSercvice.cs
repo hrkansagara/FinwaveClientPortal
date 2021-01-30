@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FinwaveClientFrontOffice.Services
 {
-    public interface ILoginSercvice
+    public interface ILoginService
     {
         Login LoginUser(Login oLogin);
     }

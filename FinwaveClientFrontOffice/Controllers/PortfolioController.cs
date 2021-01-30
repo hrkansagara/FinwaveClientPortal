@@ -1,4 +1,5 @@
-﻿using FinwaveClientFrontOffice.Models;
+﻿using FinwaveClientFrontOffice.Authorization;
+using FinwaveClientFrontOffice.Models;
 using FinwaveClientFrontOffice.Services;
 using Newtonsoft.Json.Linq;
 using System;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace FinwaveClientFrontOffice.Controllers
 {
+    [UserAuthorization]
     public class PortfolioController : Controller
     {
 

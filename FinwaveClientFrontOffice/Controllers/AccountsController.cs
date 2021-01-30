@@ -1,17 +1,15 @@
-﻿using FinwaveClientFrontOffice.Services;
+﻿using FinwaveClientFrontOffice.Authorization;
 using FinwaveClientFrontOffice.Models;
+using FinwaveClientFrontOffice.Services;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Web.Helpers;
-using Newtonsoft.Json.Linq;
 
 namespace FinwaveClientFrontOffice.Controllers
 {
+    [UserAuthorization]
     public class AccountsController : Controller
     {
 

@@ -10,15 +10,15 @@ using System.Web;
 
 namespace FinwaveClientFrontOffice.Services
 {
-    public class LoginService : ILoginSercvice
+    public class LoginService : ILoginService
     {
         private readonly LoginRepository _objLoginRepository;
         /// <summary>
         /// LoginService
         /// </summary>
-        public LoginService()
+        public LoginService(LoginRepository objLoginRepository)
         {
-            _objLoginRepository = new LoginRepository();
+            _objLoginRepository = objLoginRepository;
         }
 
         /// <summary>

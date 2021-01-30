@@ -1,3 +1,4 @@
+using FinwaveClientFrontOffice.Repositories;
 using FinwaveClientFrontOffice.Services;
 using System.Web.Mvc;
 using Unity;
@@ -14,6 +15,8 @@ namespace FinwaveClientFrontOffice
             container.RegisterType<IDashboardService, DashboardService>();
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<IPortfolioService, PortfolioService>();
+            container.RegisterType<ILoginService, LoginService>();
+            container.RegisterType<ILoginRepository, LoginRepository>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
