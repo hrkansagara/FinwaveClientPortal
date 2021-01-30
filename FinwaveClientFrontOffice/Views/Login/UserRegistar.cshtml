@@ -4,6 +4,12 @@
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
 
+@if (TempData["Notification"] != null)
+{
+    <script type="text/javascript">
+        showNotificationMessage('@Html.Raw(HttpUtility.JavaScriptStringEncode(Convert.ToString(TempData["Notification"])))');
+    </script>
+}
 <h1 class="mb-4 text-login">Register</h1>
 @using (Ajax.BeginForm("UserDetailByClientCode", "Login", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "handleCheckClientSuccess" }, new { @id = "frmUserRegistar" }))
 {
@@ -34,7 +40,7 @@
         </div>
     }
 
-    @using (Ajax.BeginForm("SaveUserDetails", "Login", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "handleSaveUserDetailsSuccess", OnBegin = "OnSaveUserDetailsBegin" }, new { @id = "frmSaveUserDetails" }))
+    @using (Html.BeginForm("SaveDetails", "Login", null, FormMethod.Post, new { @id = "frmSaveUserDetails" }))
     {
         @Html.HiddenFor(x => x.MobileOtp)
         @Html.PasswordFor(e => e.Password, new { @class = "form-control-1 form-control-rounded passwork-login", placeholder = "Password", autocomplete = "off" })

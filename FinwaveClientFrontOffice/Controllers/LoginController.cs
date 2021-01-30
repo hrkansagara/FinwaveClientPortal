@@ -90,6 +90,9 @@ namespace FinwaveClientFrontOffice.Controllers
             return PartialView("~/Views/Login/UserRegistar.cshtml");
         }
 
+
+
+
         [HttpPost]
         public JsonResult UserDetailByClientCode(User oUser)
         {
@@ -168,10 +171,38 @@ namespace FinwaveClientFrontOffice.Controllers
             return Json(saveResponse);
         }
 
+
+        /// <summary>
+        /// Index
+        /// </summary>
+        /// <param name="ouser"></param>
+        /// <returns></returns>
         [HttpPost]
-        public JsonResult SaveUserDetails(User oUser)
+        public ActionResult SaveDetails(User oUser)
         {
-            SaveResponse oSaveResponse = new SaveResponse();
+            var userResponse = SaveUserDetails(oUser);
+            if (userResponse.Success)
+            {
+                AccountModel accountModel = SessionHelper.CurrentOtpUser;
+                Login oLogin = new Login();
+                oLogin.UserFullName = accountModel.CLIENT_NAME;
+                oLogin.UserName = accountModel.CLIENT_ID;
+                oLogin.EmailId = accountModel.EmailId;
+                oLogin.Mobile = accountModel.Mobile;
+                SessionHelper.CurrentUser = oLogin;
+                TempData["Notification"] = JsonConvert.SerializeObject(userResponse);
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else
+            {
+                TempData["Notification"] = JsonConvert.SerializeObject(userResponse);
+                return View();
+            }
+        }
+
+        public UserResponse SaveUserDetails(User oUser)
+        {
+            UserResponse userResponse = new UserResponse();
             if (oUser.Password.ToLower() == oUser.ConformPassword.ToLower())
             {
                 if (!string.IsNullOrEmpty(oUser.MobileOtp))
@@ -180,26 +211,29 @@ namespace FinwaveClientFrontOffice.Controllers
                     {
                         oUser.Password = PasswordSecurity.EncryptPassword(oUser.Password);
                         SessionHelper.CurrentOtpUser.Password = oUser.Password;
+                        SaveResponse oSaveResponse = new SaveResponse();
                         oSaveResponse = objLoginService.SaveUserDetails(SessionHelper.CurrentOtpUser);
+                        userResponse.ResponseString = oSaveResponse.ResponseString;
+                        userResponse.Success = oSaveResponse.Success;
                     }
                     else
                     {
-                        oSaveResponse.Success = false;
-                        oSaveResponse.ResponseString = "Otp not matched.";
+                        userResponse.Success = false;
+                        userResponse.ResponseString = "Otp not matched.";
                     }
                 }
                 else
                 {
-                    oSaveResponse.Success = false;
-                    oSaveResponse.ResponseString = "Please enter Otp number.";
+                    userResponse.Success = false;
+                    userResponse.ResponseString = "Please enter Otp number.";
                 }
             }
             else
             {
-                oSaveResponse.Success = false;
-                oSaveResponse.ResponseString = "passward not matched.";
+                userResponse.Success = false;
+                userResponse.ResponseString = "passward not matched.";
             }
-            return Json(oSaveResponse);
+            return userResponse;
         }
 
         [HttpPost]
