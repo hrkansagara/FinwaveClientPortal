@@ -16,3 +16,9 @@ textarea {
     max-width: 280px;
 }
 
+.toast-top-center {
+    top: 50%;
+    margin: 0 auto;
+    left: 50%;
+}
+

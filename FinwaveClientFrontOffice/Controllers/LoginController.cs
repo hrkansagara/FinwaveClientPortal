@@ -92,9 +92,11 @@ namespace FinwaveClientFrontOffice.Controllers
             return PartialView("~/Views/Login/UserRegistar.cshtml");
         }
 
-
-
-
+        /// <summary>
+        /// User verify and send otp
+        /// </summary>
+        /// <param name="oUser"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult UserDetailByClientCode(User oUser)
         {
@@ -160,10 +162,10 @@ namespace FinwaveClientFrontOffice.Controllers
                     oAccountModel.MobileOtp = generator.Next(0, 1000000).ToString("D6");
                     SessionHelper.CurrentOtpUser = oAccountModel;
                     //Send otp on mobile
-                    //var sms = new SendSMS();
-                    //sms.mobile = "7984452408";// oAccountModel.MOBILE_NO;
-                    //sms.message = oAccountModel.MobileOtp;
-                    //sms.apicall();
+                    var sms = new SendSMS();
+                    sms.mobile = "7984452408";// oAccountModel.MOBILE_NO;
+                    sms.message = "Below is the OTP for finwave workspace regestration. \n" + oAccountModel.MobileOtp;
+                    sms.apicall();
                     //end
                     saveResponse.Success = true;
                     saveResponse.Data = oAccountModel.MobileOtp;
@@ -214,6 +216,11 @@ namespace FinwaveClientFrontOffice.Controllers
             }
         }
 
+        /// <summary>
+        /// Save User
+        /// </summary>
+        /// <param name="oUser"></param>
+        /// <returns></returns>
         public UserResponse SaveUserDetails(User oUser)
         {
             UserResponse userResponse = new UserResponse();
@@ -250,6 +257,10 @@ namespace FinwaveClientFrontOffice.Controllers
             return userResponse;
         }
 
+        /// <summary>
+        /// Resend OTP
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult ResendOtp()
         {
@@ -258,16 +269,21 @@ namespace FinwaveClientFrontOffice.Controllers
             Random generator = new Random();
             SessionHelper.CurrentOtpUser.MobileOtp = generator.Next(0, 1000000).ToString("D6");
             //Send otp on mobile
-            //var sms = new SendSMS();
-            //sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
-            //sms.message = SessionHelper.CurrentOtpUser.MobileOtp;
-            //sms.apicall();
+            var sms = new SendSMS();
+            sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
+            sms.message = "Below is the OTP for finwave workspace regestration. \n" + SessionHelper.CurrentOtpUser.MobileOtp;
+            sms.apicall();
             //end
             oSaveResponse.Success = true;
             oSaveResponse.ResponseString = "Otp sent successfully.";
             return Json(oSaveResponse);
         }
 
+        /// <summary>
+        /// Reset Password
+        /// </summary>
+        /// <param name="oUser"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult ResetPassward(User oUser)
         {
@@ -296,12 +312,11 @@ namespace FinwaveClientFrontOffice.Controllers
                 }
                 else
                 {
-                    //Add Logic -mobile for sent passward
                     //Send otp on mobile
-                    //var sms = new SendSMS();
-                    //sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
-                    //sms.message = oLogin.Password;
-                    //sms.apicall();
+                    var sms = new SendSMS();
+                    sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
+                    sms.message = "Below is the Password for finwave workspace. \n" + oLogin.Password;
+                    sms.apicall();
                     //end
                 }
 

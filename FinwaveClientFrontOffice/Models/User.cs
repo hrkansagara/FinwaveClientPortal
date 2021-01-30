@@ -17,6 +17,10 @@ namespace FinwaveClientFrontOffice.Models
         [Required(ErrorMessage = "The Username field is required.")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "The Password field is required.")]
+        [StringLength(18, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "The Password should contains one small letter, one capital letter and one number.")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Password { get; set; }
         [Required(ErrorMessage = "The Conform Password field is required.")]
         [CompareAttribute("Password", ErrorMessage = "Password doesn't match.")]

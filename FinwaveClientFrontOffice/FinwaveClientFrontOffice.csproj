@@ -307,8 +307,6 @@
     <Content Include="Content\images\screenshots\tinified\gull-horizontal-nav.png" />
     <Content Include="Content\images\screenshots\tinified\gull-large-sidebar.png" />
     <Content Include="Content\images\visa.png" />
-    <Content Include="Content\js\app.js" />
-    <Content Include="Content\js\app.min.js" />
     <Content Include="Content\js\Common.js" />
     <Content Include="Content\js\jquery-1.10.2.min.js" />
     <Content Include="Content\js\jquery.matchHeight.js" />
@@ -1097,7 +1095,6 @@
     <Content Include="Content\fonts\iconsmind\iconsmind.ttf" />
     <Content Include="Content\fonts\iconsmind\iconsmind.woff" />
     <Content Include="Content\images\screenshots\tinified.zip" />
-    <Content Include="Content\js\app.js.map" />
     <Content Include="Content\Login\dist-assets\css\plugins\animate.scss\animate.css.map" />
     <Content Include="Content\Login\dist-assets\css\plugins\animate.scss\animate.min.css.map" />
     <Content Include="Content\Login\dist-assets\css\plugins\animate.scss\animate.scss" />
