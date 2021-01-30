@@ -91,7 +91,7 @@ namespace FinwaveClientFrontOffice.Repositories
                     o.Add("@userName", oLogin.UserName, dbType: DbType.String);
                     o.Add("@passward", oLogin.Password, dbType: DbType.String);
                     connection.Execute("usp_UpdatePasswardByuserName", o, commandType: CommandType.StoredProcedure, commandTimeout: 900);
-                    return new SaveResponse() { Success = true, ResponseString = "Passward changed successfully.Please check your mail." };
+                    return new SaveResponse() { Success = true, ResponseString = "Passward sent successfully.Please check your inbox." };
                 }
             }
             catch (Exception ex)

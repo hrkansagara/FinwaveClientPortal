@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "UserRegistar";
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
+    string clientcode = Model?.ClientCode;
 }
 
 @if (TempData["Notification"] != null)
@@ -43,10 +44,14 @@
     @using (Html.BeginForm("SaveDetails", "Login", null, FormMethod.Post, new { @id = "frmSaveUserDetails" }))
     {
         @Html.HiddenFor(x => x.MobileOtp)
-        @Html.PasswordFor(e => e.Password, new { @class = "form-control-1 form-control-rounded passwork-login", placeholder = "Password", autocomplete = "off" })
-        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        @Html.PasswordFor(e => e.ConformPassword, new { @class = "form-control-1 form-control-rounded passwork-login", placeholder = "Conform password", autocomplete = "off" })
-        @Html.ValidationMessageFor(model => model.ConformPassword, "", new { @class = "text-danger" })
+        <div class="form-group p-11 ico-add-01">
+            @Html.PasswordFor(e => e.Password, new { @class = "form-control-1 form-control-rounded passwork-login", placeholder = "Password", autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group p-11 ico-add-01">
+            @Html.PasswordFor(e => e.ConformPassword, new { @class = "form-control-1 form-control-rounded passwork-login", placeholder = "Conform password", autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.ConformPassword, "", new { @class = "text-danger" })
+        </div>
         <button type="button" id="btnSignIn" class="btn btn-rounded btn-primary1 btn-primary-sing-in-01 btn-block mt-2 p-22 reset-button-01">Sign In</button>
     }
 </div>
@@ -59,14 +64,18 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 
 
     $(document).ready(function () {
-
-        $('.clsOtpDetails').hide();
+        if ('@clientcode') {
+            $('.clsOtpDetails').show();
+            $("#frmUserRegistar").valid()
+        }
+        else {
+            $('.clsOtpDetails').hide();
+        }
         $('.otp-event').each(function () {
             var $input = $(this).find('.otp-number-input');
             var $submit = $(this).find('.otp-submit');
@@ -145,6 +154,10 @@
             strMobileOtp += $(this).val()
         });
         $("#MobileOtp").val(strMobileOtp);
+        if (!$("#MobileOtp").val()) {
+            Notify(false, 'Please enter otp.')
+            return false;
+        }
         $("#frmSaveUserDetails").submit();
     });
 

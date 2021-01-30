@@ -828,6 +828,7 @@
     <Content Include="Content\Login\dist-assets\js\scripts\widgets-statistics.js" />
     <Content Include="Content\Login\dist-assets\js\scripts\widgets-statistics.min.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="EmailTemplate\ResetPasswordTemplate.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />

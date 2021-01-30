@@ -7,6 +7,8 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.IO;
+using System.Text;
 
 namespace FinwaveClientFrontOffice.Controllers
 {
@@ -102,12 +104,12 @@ namespace FinwaveClientFrontOffice.Controllers
             SaveResponse saveResponse = new SaveResponse();
             var login = new Login()
             {
-                UserName = oUser.UserName
+                UserName = oUser.ClientCode
             };
             var oLogin = objLoginService.GetUserByUserName(login);
-            if(oLogin != null)
+            if (oLogin != null)
             {
-                return Json(new SaveResponse() { Success = false, ResponseString = "UserName already exist." });
+                return Json(new SaveResponse() { Success = false, ResponseString = "User already exist." });
             }
             var responce = objLoginService.GetClientBankAllDetailByClientCode(oUser.ClientCode);
             var result = responce.Content.ReadAsStringAsync().Result;
@@ -206,8 +208,9 @@ namespace FinwaveClientFrontOffice.Controllers
             }
             else
             {
+                oUser.ClientCode = SessionHelper.CurrentOtpUser.CLIENT_ID;
                 TempData["Notification"] = JsonConvert.SerializeObject(userResponse);
-                return View();
+                return PartialView("~/Views/Login/UserRegistar.cshtml", oUser);
             }
         }
 
@@ -255,10 +258,10 @@ namespace FinwaveClientFrontOffice.Controllers
             Random generator = new Random();
             SessionHelper.CurrentOtpUser.MobileOtp = generator.Next(0, 1000000).ToString("D6");
             //Send otp on mobile
-            var sms = new SendSMS();
-            sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
-            sms.message = SessionHelper.CurrentOtpUser.MobileOtp;
-            sms.apicall();
+            //var sms = new SendSMS();
+            //sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
+            //sms.message = SessionHelper.CurrentOtpUser.MobileOtp;
+            //sms.apicall();
             //end
             oSaveResponse.Success = true;
             oSaveResponse.ResponseString = "Otp sent successfully.";
@@ -272,6 +275,7 @@ namespace FinwaveClientFrontOffice.Controllers
             Login oLogin = new Login();
             oLogin.UserName = oUser.ClientCode;
             oLogin = objLoginService.UserDetailByUserName(oLogin);
+            var isSuccess = false;
             if (oLogin != null)
             {
                 Random generator = new Random();
@@ -279,20 +283,38 @@ namespace FinwaveClientFrontOffice.Controllers
                 if (oUser.ReceiveType == "Email")
                 {
                     //Add Logic for mail
+                    string s = string.Empty;
+                    StringBuilder str = new StringBuilder();
+                    StreamReader sr = new StreamReader(Server.MapPath("~/EmailTemplate/ResetPasswordTemplate.html"));
+                    s = sr.ReadToEnd();
+                    str = new StringBuilder(s);
+                    str.Replace("##UserName##", oLogin.UserFullName);
+                    str.Replace("##Password##", oLogin.Password);
+                    sr.Close();
+                    //oLogin.EmailId
+                    isSuccess = SendEmail.SentEmail("hiteshkansagara00@gmail.com", "", "Reset Password", str.ToString(), "");
                 }
                 else
                 {
                     //Add Logic -mobile for sent passward
                     //Send otp on mobile
-                    var sms = new SendSMS();
-                    sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
-                    sms.message = oLogin.Password;
-                    sms.apicall();
+                    //var sms = new SendSMS();
+                    //sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
+                    //sms.message = oLogin.Password;
+                    //sms.apicall();
                     //end
                 }
 
-                oLogin.Password = PasswordSecurity.EncryptPassword(oLogin.Password);
-                oSaveResponse = objLoginService.UpdatePasswardByClientname(oLogin);
+                if (isSuccess)
+                {
+                    oLogin.Password = PasswordSecurity.EncryptPassword(oLogin.Password);
+                    oSaveResponse = objLoginService.UpdatePasswardByClientname(oLogin);
+                }
+                else
+                {
+                    oSaveResponse.Success = false;
+                    oSaveResponse.ResponseString = "Something went wrong please try again after sometimes.";
+                }
             }
             else
             {
