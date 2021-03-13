@@ -97,35 +97,4 @@ namespace FinwaveClientFrontOffice.Common
             this.Data = data;
         }
     }
-
-    public class SMTPEmail
-    {
-        public static async Task<bool> SendEmail(Tuple<string, string, string> mailObj)
-        {
-            string SMTPUserName = ConfigurationManager.AppSettings[ConfigurationManager.AppSettings["SMTPUserName"]].ToString();
-            string SMTPFrom = ConfigurationManager.AppSettings[ConfigurationManager.AppSettings["SMTPFrom"]].ToString();
-            try
-            {
-                MailMessage mail = new MailMessage(SMTPFrom, mailObj.Item1);
-                mail.IsBodyHtml = true;
-                mail.Subject = mailObj.Item2;
-                mail.Body = mailObj.Item3;
-
-                SmtpClient client = new SmtpClient(ConfigurationManager.AppSettings[ConfigurationManager.AppSettings["SMTPHost"]].ToString());
-                client.Port = Convert.ToInt32(ConfigurationManager.AppSettings[ConfigurationManager.AppSettings["SMTPPort"]].ToString());
-                client.EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings[ConfigurationManager.AppSettings["EnableSsl"]].ToString());
-                client.UseDefaultCredentials = false; // Important : This line Of code must be executed before setting the NetworkCredentials Object, otherwise the setting will be reset (a bug in .NET)
-                NetworkCredential cred = new NetworkCredential(SMTPUserName, ConfigurationManager.AppSettings[ConfigurationManager.AppSettings["SMTPPassword"]].ToString());
-                client.Credentials = cred;
-                await client.SendMailAsync(mail).ConfigureAwait(false);
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-    }
 }
-

@@ -24470,3 +24470,11 @@ blockquote {
 [dir="rtl"] .btn-group > .btn:not(:first-child),
 [dir="rtl"] .btn-group > .btn-group:not(:first-child) > .btn {
   border-radius: 0; }
+
+
+.card-body select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}

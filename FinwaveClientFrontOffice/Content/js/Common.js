@@ -19,6 +19,7 @@ function CloseNotify() {
 }
 
 function handleCheckClientSuccess(oData) {
+    $("#idBtnGenerateOTP").removeAttr('disabled');
     if (oData.Success) {
         $('.clsOtpDetails').show();
         Notify(true, oData.ResponseString);
@@ -68,3 +69,32 @@ function showNotificationMessage(data) {
     }
     return data.Success;
 }
+
+$(document).ready(function () {
+    $.ytLoad();
+
+    $.ajaxSetup({
+        start: function (x, e) {
+            $.ytLoad('start');
+        },
+        error: function (x, e) {
+            $.ytLoad('error');
+        },
+        complete: function (x, e) {
+            $.ytLoad('complete');
+        }
+    });
+
+    $(document).on('invalid-form.validate', 'form', function () {
+        var button = $(this).find(':submit');
+        setTimeout(function () {
+            button.removeAttr('disabled');
+        }, 1);
+    });
+    $(document).on('submit', 'form', function () {
+        var button = $(this).find(':submit');
+        setTimeout(function () {
+            button.attr('disabled', 'disabled');
+        }, 0);
+    });
+})

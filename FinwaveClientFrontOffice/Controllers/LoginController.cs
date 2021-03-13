@@ -163,7 +163,7 @@ namespace FinwaveClientFrontOffice.Controllers
                     SessionHelper.CurrentOtpUser = oAccountModel;
                     //Send otp on mobile
                     var sms = new SendSMS();
-                    sms.mobile = "7984452408";// oAccountModel.MOBILE_NO;
+                    sms.mobile = oAccountModel.MOBILE_NO;
                     sms.message = "Below is the OTP for finwave workspace regestration. \n" + oAccountModel.MobileOtp;
                     sms.apicall();
                     //end
@@ -270,7 +270,7 @@ namespace FinwaveClientFrontOffice.Controllers
             SessionHelper.CurrentOtpUser.MobileOtp = generator.Next(0, 1000000).ToString("D6");
             //Send otp on mobile
             var sms = new SendSMS();
-            sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
+            sms.mobile =  SessionHelper.CurrentOtpUser.MOBILE_NO;
             sms.message = "Below is the OTP for finwave workspace regestration. \n" + SessionHelper.CurrentOtpUser.MobileOtp;
             sms.apicall();
             //end
@@ -295,7 +295,7 @@ namespace FinwaveClientFrontOffice.Controllers
             if (oLogin != null)
             {
                 Random generator = new Random();
-                oLogin.Password = generator.Next(0, 1000000).ToString("D6");
+                oLogin.Password = CreatePassword(3, "abcdefghijklmnopqrstuvwxyz") + CreatePassword(3, "ABCDEFGHIJKLMNOPQRSTUVWXYZ") + generator.Next(0, 1000000).ToString("D3");
                 if (oUser.ReceiveType == "Email")
                 {
                     //Add Logic for mail
@@ -307,14 +307,13 @@ namespace FinwaveClientFrontOffice.Controllers
                     str.Replace("##UserName##", oLogin.UserFullName);
                     str.Replace("##Password##", oLogin.Password);
                     sr.Close();
-                    //oLogin.EmailId
-                    isSuccess = SendEmail.SentEmail("hiteshkansagara00@gmail.com", "", "Reset Password", str.ToString(), "");
+                    isSuccess = SendEmail.SentEmail(oLogin.EmailId, "", "Reset Password", str.ToString(), "");
                 }
                 else
                 {
                     //Send otp on mobile
                     var sms = new SendSMS();
-                    sms.mobile = "7984452408";// SessionHelper.CurrentOtpUser.MOBILE_NO;
+                    sms.mobile =  SessionHelper.CurrentOtpUser.MOBILE_NO;
                     sms.message = "Below is the Password for finwave workspace. \n" + oLogin.Password;
                     sms.apicall();
                     //end
@@ -337,6 +336,24 @@ namespace FinwaveClientFrontOffice.Controllers
                 oSaveResponse.ResponseString = "UserName not exist.";
             }
             return Json(oSaveResponse);
+        }
+
+        /// <summary>
+        /// generate password
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="fromCharacters"></param>
+        /// <returns></returns>
+        public string CreatePassword(int length, string fromCharacters)
+        {
+            string valid = fromCharacters;// "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
         }
     }
 }

@@ -17,11 +17,11 @@ namespace FinwaveClientFrontOffice.Models
         public string Mobile { get; set; }
         public string UserFullName { get; set; }
         public bool IsChangePassword { get; set; }
-        [Required(ErrorMessage = "The Username field is required.")]
+        //[Required(ErrorMessage = "The Username field is required.")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "The Password field is required.")]
+        //[Required(ErrorMessage = "The Password field is required.")]
         public string Password { get; set; }
-        [EmailAddress(ErrorMessage = "Please enter correct email address")]
+        //[EmailAddress(ErrorMessage = "Please enter correct email address")]
         public string EmailId { get; set; }
         public bool IsAdmin { get; set; }
         public int RoleID { get; set; }

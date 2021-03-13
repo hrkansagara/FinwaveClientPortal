@@ -18,11 +18,11 @@
         @Html.TextBoxFor(e => e.ClientCode, new { @class = "form-control-1 form-control-rounded", placeholder = "Client Code", autocomplete = "off" })
         @Html.ValidationMessageFor(model => model.ClientCode, "", new { @class = "text-danger" })
     </div>
-    <button type="submit" class="btn btn-rounded btn-primary1 btn-primary-sing-in-01 btn-block mt-2 p-22 reset-button-01">Generate OTP</button>
+    <button type="submit" class="btn btn-rounded btn-primary1 btn-primary-sing-in-01 btn-block mt-2 p-22 reset-button-01" id="idBtnGenerateOTP">Generate OTP</button>
 }
 <div id="idUserRegistar" class="clsOtpDetails">
     <div class="d-flex mt-5 reg">
-        <img src="~/Content/Login/dist-assets/images/otp-icon.svg">
+        <img src="~/Content/images/otp-icon.svg">
         <div class="otp-wrapper otp-event">
             <div class="otp-container">
                 <input type="tel" id="otp-number-input-1" class="otp-number-input otp-number-input-02" maxlength="1" autocomplete="off">

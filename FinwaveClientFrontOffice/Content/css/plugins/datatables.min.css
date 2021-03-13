@@ -15,6 +15,7 @@ table.dataTable {
     margin-top: 6px !important;
     margin-bottom: 6px !important;
     max-width: none !important;
+    border-bottom: 1px solid;
     /*border-collapse: separate !important*/
 }
 
@@ -48,7 +49,8 @@ div.dataTables_wrapper div.dataTables_length select {
 }
 
 div.dataTables_wrapper div.dataTables_filter {
-    text-align: right
+    text-align: right !important;
+    margin-right: -5px !important; 
 }
 
 div.dataTables_wrapper div.dataTables_filter label {
@@ -66,14 +68,16 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 div.dataTables_wrapper div.dataTables_info {
-    padding-top: 0.85em;
-    white-space: nowrap
+    padding-top: 0.55em;
+    white-space: nowrap;
+    margin-left: -3px;
 }
 
 div.dataTables_wrapper div.dataTables_paginate {
-    margin: 0;
+    /*margin: 0; */
     white-space: nowrap;
-    text-align: right
+    text-align: right;
+    margin-right: -4px;
 }
 
 div.dataTables_wrapper div.dataTables_paginate ul.pagination {
@@ -100,7 +104,8 @@ table.dataTable thead>tr>td.sorting_asc,
 table.dataTable thead>tr>td.sorting_desc,
 table.dataTable thead>tr>td.sorting {
     padding: 10px 30px 10px 10px;
-    background-color: #f3e9ff;
+    background-color: #3c2e7e;
+    color: #ffffff;
 }
 
 table.dataTable thead>tr>th:active,
